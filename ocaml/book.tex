@@ -32,8 +32,8 @@
 \usepackage{hevea}                           
 \usepackage{upquote}
 
-\newcommand{\thetitle}{Think OCaml: How to Think Like a Computer Scientist}
-\newcommand{\theversion}{0.1.1}
+\newcommand{\thetitle}{Think Scala: How to Think Like a Computer Scientist}
+\newcommand{\theversion}{0.1.0}
 
 \makeindex
 
@@ -63,7 +63,7 @@
 \vspace*{2.0in}
 
 \begin{spacing}{3}
-{\huge Think OCaml}\\
+{\huge Think Scala}\\
 {\Large How to Think Like a Computer Scientist}
 \end{spacing}
 
@@ -92,7 +92,7 @@ Version \theversion
 \vspace*{2.0in}
 
 \begin{spacing}{3}
-{\huge Think OCaml}\\
+{\huge Think Scala}\\
 {\Large How to Think Like a Computer Scientist}
 \end{spacing}
 
@@ -104,6 +104,7 @@ Version \theversion
 
 
 {
+\large Kim Stebel\\
 \large Nicholas Monje\\
 \large Allen Downey\\
 }
@@ -111,9 +112,9 @@ Version \theversion
 
 \vspace{0.5in}
 
-{\Large Green Tea Press}
+% {\Large Green Tea Press}
 
-{\small Needham, Massachusetts}
+% {\small Needham, Massachusetts}
 
 %\includegraphics[width=1in]{figs/logo1.eps}
 \vfill
@@ -126,35 +127,35 @@ Version \theversion
 \thispagestyle{empty}
 
 {\small
-Copyright \copyright~2011 Nicholas Monje.
+Copyright \copyright~2011 Kim Stebel.
 
 
-Printing history:
+%Printing history:
 
-\begin{description}
+%\begin{description}
 
-\item[April 2002:] First edition of {\em How to Think Like
-a Computer Scientist}.
+%\item[April 2002:] First edition of {\em How to Think Like
+%a Computer Scientist}.
 
-\item[August 2007:] Major revision, changed title to
-{\em How to Think Like a (Python) Programmer}.
+%\item[August 2007:] Major revision, changed title to
+%{\em How to Think Like a (Python) Programmer}.
 
-\item[June 2008:] Major revision, changed title to
-{\em Think Python: How to Think Like
-a Computer Scientist}.
+%\item[June 2008:] Major revision, changed title to
+%{\em Think Python: How to Think Like
+%a Computer Scientist}.
 
-\item[January 2011:] Translation to OCaml, changed title to
-{\em Think OCaml: How to Think Like a Computer Scientist}.
+%\item[January 2011:] Translation to OCaml, changed title to
+%{\em Think OCaml: How to Think Like a Computer Scientist}.
 
-\end{description}
+%\end{description}
 
 \vspace{0.2in}
 
-\begin{flushleft}
-Green Tea Press       \\
-9 Washburn Ave \\
-Needham MA 02492
-\end{flushleft}
+%5\begin{flushleft}
+%reen Tea Press       \\
+%9 Washburn Ave \\
+%Needham MA 02492
+%\end{flushleft}
 
 Permission is granted to copy, distribute, and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.1 or
@@ -170,10 +171,11 @@ The original form of this book is \LaTeX\ source code.  Compiling this
 representation of a textbook, which can be converted to other formats
 and printed.
 
+%TODO: insert github link
 %The \LaTeX\ source for this book is available from
 %\url{http://www.thinkpython.com}
 
-Cover image is courtesy of Anumpama Kinagi, all rights reserved.
+%Cover image is courtesy of Anumpama Kinagi, all rights reserved.
 
 \vspace{0.2in}
 
@@ -190,6 +192,7 @@ Cover image is courtesy of Anumpama Kinagi, all rights reserved.
 
 {\Large \thetitle}
 
+{\large Kim Stebel}
 {\large Nicholas Monje\\}
 {\large Allen Downey\\}
 
@@ -201,12 +204,12 @@ Version \theversion
 
 \chapter{Preface}
 
-% TODO(monje): write a preface :)
+%TODO: write a preface
 
 \section*{Contributor List}
+{\large Richard Schubert - inspiration}
 
-Many thanks to Anumpama Kinagi for the use of the cover image.
-
+%TODO: insert contributers
 
 % TABLE OF CONTENTS
 \begin{latexonly}
@@ -245,11 +248,11 @@ On one level, you will be learning to program, a useful
 skill by itself.  On another level, you will use programming as a means to
 an end.  As we go along, that end will become clearer.
 
-\section{The OCaml programming language}
+\section{The Scala programming language}
 \index{programming language}
 \index{language!programming}
 
-The programming language you will learn is OCaml. OCaml is
+The programming language you will learn is Scala. Scala is
 an example of a {\bf high-level language}; other high-level languages
 you might have heard of are C, C++, Perl, Java and Python.
 
@@ -304,35 +307,36 @@ Once a program is compiled, you can execute it repeatedly without further transl
 \centerline{\includegraphics[height=0.77in]{figs/compile.eps}}
 \afterfig
 
-One of the nice features of OCaml is that OCaml is both a compiled and an interpreted 
-programming language. On the one hand, OCaml can be compiled into an executable file. 
-This makes it easier to pass along your program to non-OCaml users, which for a new, 
-up-and-coming programming language like OCaml, is a nice feature. On the other hand, 
-OCaml can be treated like an interpreted programming language, meaning that an OCaml 
-script or OCaml commands can be executed by an interpreter. This is useful for finding 
+One of the nice features of Scala is that Scala is both a compiled and an interpreted 
+programming language. On the one hand, Scala can be compiled into an executable file. 
+This makes it easier to pass along your program to non-Scala users, which for a new, 
+up-and-coming programming language like Scala, is a nice feature. On the other hand, 
+Scala can be treated like an interpreted programming language, meaning that a Scala 
+script or Scala commands can be executed by an interpreter. This is useful for finding 
 errors in your code and testing commands and snippets of code. There are two ways to use 
-the interpreter: {\bf interactive mode} and {\bf script mode}. In interactive mode, you 
-type OCaml commands into the {\bf toplevel} and the interpreter prints the result:
+the interpreter: Using the {\bf REPL} and executing {\bf scripts}. REPL stands for
+read-eval-print-look.In the REPL, you type Scala commands and the interpreter prints the
+result:
 
-\index{interactive mode}
+\index{REPL}
 \index{script mode}
 
 \beforeverb
 \begin{verbatim}
-# 1+1;;
-- : int = 2
+scala> 1 + 1
+res0: Int = 2
 \end{verbatim}
 \afterverb
 %
-The octothorp, {\tt \#}, is the {\bf prompt} the interpreter uses to indicate that it is 
-ready. The double semi-colons indicates the end of a line. If you type {\tt 1 + 1;;}, the 
-interpreter replies {\tt - : int = 2}.
+``{\tt scala>}'' is the {\bf prompt} the REPL uses to indicate that it is 
+ready. If you type {\tt 1 + 1}, the 
+REPL replies {\tt res0: Int = 2}.
 
 \index{prompt}
 
 Alternatively, you can store code in a file and use the interpreter to execute the contents 
-of the file, which is called a {\bf script}.  By convention, OCaml scripts have names that 
-end with {\tt .ml}.
+of the file, which is called a {\bf script}.  By convention, Scala scripts have names that 
+end with {\tt .scala}.
 
 \index{script}
 
@@ -342,70 +346,37 @@ Working in interactive mode is convenient for testing small pieces of code becau
 and execute them immediately.  But for anything more than a few lines, you should save your code 
 as a script so you can modify and execute it in the future.
 
-\section{The OCaml Toplevel}
+\section{The Scala REPL}
 
-Let's take a moment to explain how to use the OCaml toplevel. The toplevel 
-works a little differently depending on your operating system. I will cover 
-using the toplevel in Windows (7) and Ubuntu (10.04 Karmic). \footnote{Mac users are on their own.}
+Let's take a moment to explain how to use the Scala REPL. The REPL has many commands that tell the
+interpreter or compiler to do specific tasks, like load code from a file or exit. You can get a list
+of these commands by typing {\tt \verb ":help" } in the REPL. To get additional information about a
+command, you can use {\tt \verb ":help COMMAND" }. One particularly useful command is
+{\tt \verb":quit"}, which does exactly what it sounds like.
 
-One thing you will need to use are OCaml commands known as {\bf directives}. 
-Directives tell the interpreter or compiler to do specific tasks, like load 
-code from a file or exit. A list of some directives  can be found at 
-\url{http://caml.inria.fr/pub/docs/manual-ocaml/manual023.html}. One particularly
-useful directive is {\tt \verb"#quit;;"}, which does exactly what it sounds like.
+\index{REPL commands}
+\index{REPL}
 
-\index{Directive}
-\index{Toplevel}
+\subsection{Installation on Linux}
 
-\subsection{Ubuntu (10.04)}
+\subsection{Installtion on Windows}
 
-First off, you must install the ocaml package and its dependencies. Open the terminal and type:
+%TODO:installation instructions
 
-\beforeverb
-\begin{verbatim}
- sudo apt-get install ocaml
-\end{verbatim}
-\afterverb
-It will then likely ask you for your admin password. After the installation is complete, you can 
-open the OCaml toplevel simply by typing {\tt ocaml} at the command line.
+After the installation is complete, you can open the Scala interpreter simply by typing {\tt scala}
+at the command line. If that does not work, you have to use the complete path, depending on where you
+installed scala.
 
-Once in the toplevel, you can open a script by using the {\tt \#use "{\it filename}";;} directive:
+Once in the REPL, you can open a script by using the {\tt :load "{\it filename}"} command:
 
 \beforeverb
 \begin{verbatim}
-# #use "myscript.ml";;
+scala> :load myscript.scala
 \end{verbatim}
 \afterverb
 
-Note that the toplevel's {\bf current directory} \footnote{The {\bf current directory} is the 
-directory in which ocaml will look to find files to run, outside of the standard ocaml directories.} 
-will be the current directory when you ran it within the terminal. You can change your current directory 
-using the {\tt \#cd ``{\it dirname}'';;} directive.
-
-\subsection{Windows (7)}
-
-First you must install OCaml. Go to the OCaml home page (\url{caml.inria.fr}) and go to the Download 
-page. Download the appropriate distribution - if you don't know which one to choose, go with the 
-Windows binary ``for the port based on the Microsoft toolchain.'' Run the installer and follow the 
-directions therein.
-
-You can now run an OCaml toplevel from the windows command line by typing {\tt ocaml}. Alternatively,
-OCaml has a very pretty toplevel with some nice features which you can open by running "Objective Caml"
-from Windows \verb">" All Programs \verb">" Objective Caml, or open the same program by searching from the windows 
-start menu.
-
-Once in the toplevel, you can open a script by using the {\tt \#use "{\it filename}";;} directive:
-
-\beforeverb
-\begin{verbatim}
-# #use "myscript.ml";;
-\end{verbatim}
-\afterverb
-
-Note that the toplevel's {\bf current directory} \footnote{The {\bf current directory} is the 
-directory in which ocaml will look to find files to run, outside of the standard ocaml directories.} 
-will be the current directory when you ran it within the terminal. You can change your current directory 
-using the {\tt \#cd "{\it dirname}";;} directive.
+Note that the directory in which ocaml will look to find scripts to run will be the current directory
+when you ran it within the terminal.
 
 \section{What is a program?}
 
@@ -462,19 +433,19 @@ to distinguish between them in order to track them down more quickly.
 \index{error!syntax}
 \index{error message}
 
-OCaml can only execute a program if the syntax is correct; otherwise, the interpreter displays an error message.  
+Scala can only execute a program if the syntax is correct; otherwise, the interpreter displays an error message.  
 {\bf Syntax} refers to the structure of a program and the rules about that structure. For example, parentheses 
 have to come in matching pairs, so {\tt (1 + 2)} is legal, but {\tt 8)} is a {\bf syntax error}.
 
 \index{parentheses!matching}
 \index{syntax}
-\index{cummings, e. e.}
+\index{Cummings, E. E.}
 
-In English readers can tolerate most syntax errors, which is why we can read the poetry of e. e. cummings without 
-spewing error messages. OCaml is not so forgiving.  If there is a single syntax error anywhere in your program, 
-OCaml will display an error message and quit, and you will not be able to run your program. During the first few 
-weeks of your programming career, you will probably spend a lot of time tracking down syntax errors.  As you gain 
-experience, you will make fewer errors and find them faster.
+In English readers can tolerate most syntax errors, which is why we can read the poetry of E. E. Cummings without 
+spewing error messages. Scala, and programming languages in general, is not so forgiving.  If there is a single syntax
+error anywhere in your program, Scala will display an error message and quit, and you will not be able to run your
+program. During the first few weeks of your programming career, you will probably spend a lot of time tracking down
+syntax errors.  As you gain experience, you will make fewer errors and find them faster.
 
 \subsection{Runtime errors}
 \label{runtime}
@@ -569,9 +540,9 @@ because there is no element with the abbreviation $Zz$.
 \index{structure}
 
 The second type of syntax error pertains to the structure of a statement; that is, the way the tokens are 
-arranged.  The statement $3 + = 3 \mbox{\$} 6$ is illegal because even though $+$ and $=$ are legal tokens, 
-you can't have one right after the other.  Similarly, in a chemical formula the subscript comes after the 
-element name, not before.
+arranged.  The statement $3 + = 3 \mbox{\$} 6$ is illegal because even though $+$ and $=$ are legal tokens,
+in mathematical notation you can't have one right after the other.  Similarly, in a chemical formula the
+subscript comes after the element name, not before.
 
 \begin{ex}
 Write a well-structured English sentence with invalid tokens in it.  Then write another sentence with all 
