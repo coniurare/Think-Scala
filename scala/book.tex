@@ -1,11 +1,12 @@
-% LaTeX source for ``Think OCaml: How to Think Like a Computer Scientist''
-% Copyright (c)  2011  Nicolas Monje
+% LaTeX source for ``Think Scala: How to Think Like a Computer Scientist''
+% Copyright (c)  2011  Kim Stebel
 
 % Permission is granted to copy, distribute and/or modify this
 % document under the terms of the GNU Free Documentation License,
 % Version 1.1  or any later version published by the Free Software
 % Foundation; with no Invariant Sections, no Front-Cover Texts,
 % and no Back-Cover Texts.
+
 
 % This distribution includes a file named fdl.tex that contains the text
 % of the GNU Free Documentation License.  If it is missing, you can obtain
@@ -315,11 +316,11 @@ Scala can be treated like an interpreted programming language, meaning that a Sc
 script or Scala commands can be executed by an interpreter. This is useful for finding 
 errors in your code and testing commands and snippets of code. There are two ways to use 
 the interpreter: Using the {\bf REPL} and executing {\bf scripts}. REPL stands for
-read-eval-print-look.In the REPL, you type Scala commands and the interpreter prints the
-result:
+read-eval-print-look, meaning the REPL reads a command, evaluates (executes) it, and
+prints the result:
 
 \index{REPL}
-\index{script mode}
+\index{script}
 
 \beforeverb
 \begin{verbatim}
@@ -340,34 +341,24 @@ end with {\tt .scala}.
 
 \index{script}
 
-\index{testing!interactive mode}
+\index{testing!REPL}
 
-Working in interactive mode is convenient for testing small pieces of code because you can type 
+Working in the REPL is convenient for testing small pieces of code, because you can type 
 and execute them immediately.  But for anything more than a few lines, you should save your code 
 as a script so you can modify and execute it in the future.
 
 \section{The Scala REPL}
 
-Let's take a moment to explain how to use the Scala REPL. The REPL has many commands that tell the
-interpreter or compiler to do specific tasks, like load code from a file or exit. You can get a list
-of these commands by typing {\tt \verb ":help" } in the REPL. To get additional information about a
-command, you can use {\tt \verb ":help COMMAND" }. One particularly useful command is
-{\tt \verb":quit"}, which does exactly what it sounds like.
+Let's take a moment to explain how to use the Scala REPL. The REPL has many commands that tell the interpreter or compiler to do specific tasks, like load code from a file or exit. You can get a list of these commands by typing {\tt \verb ":help" } in the REPL. To get additional information about a command, you can use {\tt \verb ":help COMMAND" }. One particularly useful command is {\tt \verb":quit"}, which does exactly what it sounds like.
 
 \index{REPL commands}
 \index{REPL}
 
-\subsection{Installation on Linux}
-
-\subsection{Installtion on Windows}
+\subsection{Installation}
 
 %TODO:installation instructions
 
-After the installation is complete, you can open the Scala interpreter simply by typing {\tt scala}
-at the command line. If that does not work, you have to use the complete path, depending on where you
-installed scala.
-
-Once in the REPL, you can open a script by using the {\tt :load "{\it filename}"} command:
+Once the installation is complete, you should be able to open the Scala interpreter simply by typing {\tt scala} at the command line. In the REPL you can open a script by using the {\tt :load "{\it filename}"} command:
 
 \beforeverb
 \begin{verbatim}
@@ -375,20 +366,15 @@ scala> :load myscript.scala
 \end{verbatim}
 \afterverb
 
-Note that the directory in which ocaml will look to find scripts to run will be the current directory
-when you ran it within the terminal.
+Note that the directory in which scala will look to find scripts to run will be the current directory when you ran it within the terminal.
 
 \section{What is a program?}
 
-A {\bf program} is a sequence of instructions that specifies how to perform a computation.  The computation 
-might be something mathematical, such as solving a system of equations or finding the roots of a polynomial, 
-but it can also be a symbolic computation, such as searching and replacing text in a document or (strangely 
-enough) compiling a program.
+A {\bf program} is a sequence of instructions that specifies how to perform a computation.  The computation might be something mathematical, such as solving a system of equations or finding the roots of a polynomial, but it can also be a symbolic computation, such as searching and replacing text in a document or (strangely enough) compiling a program.
 
 \index{program}
 
-The details look different in different languages, but a few basic instructions appear in just about every 
-language:
+The details look different in different languages, but a few basic instructions appear in just about every language:
 
 \begin{description}
 
@@ -404,10 +390,7 @@ language:
 
 \end{description}
 
-Believe it or not, that's pretty much all there is to it.  Every program you've ever used, no matter how 
-complicated, is made up of instructions that look pretty much like these.  So you can think of programming 
-as the process of breaking a large, complex task into smaller and smaller subtasks until the subtasks are 
-simple enough to be performed with one of these basic instructions.
+Believe it or not, that's pretty much all there is to it.  Every program you've ever used, no matter how complicated, is made up of instructions that look pretty much like these.  So you can think of programming as the process of breaking a large, complex task into smaller and smaller subtasks until the subtasks are simple enough to be performed with one of these basic instructions.
 
 \index{algorithm}
 
@@ -417,35 +400,24 @@ That may be a little vague, but we will come back to this topic when we talk abo
 \index{debugging}
 \index{bug}
 
-Programming is error-prone.  For whimsical reasons, programming errors are called {\bf bugs}\footnote{It's 
-not actually true that it's named after a moth found in a computer relay, though that does make for a rather 
-amusing story. For more information on etymology, check out \url{http://en.wikipedia.org/wiki/Software_bug}.} 
-and the process of tracking them down is called {\bf debugging}.
+Programming is error-prone.  For whimsical reasons, programming errors are called {\bf bugs}\footnote{It's not actually true that it's named after a moth found in a computer relay, though that does make for a rather amusing story. For more information on etymology, check out \url{http://en.wikipedia.org/wiki/Software_bug}.} and the process of tracking them down is called {\bf debugging}.
 
 \index{debugging}
 \index{bug}
 
-Three kinds of errors can occur in a program: syntax errors, runtime errors, and semantic errors. It is useful 
-to distinguish between them in order to track them down more quickly.
+Three kinds of errors can occur in a program: Syntax errors, runtime errors, and semantic errors. It is useful to distinguish between them in order to track them down more quickly.
 
 \subsection{Syntax errors}
 \index{syntax error}
 \index{error!syntax}
 \index{error message}
 
-Scala can only execute a program if the syntax is correct; otherwise, the interpreter displays an error message.  
-{\bf Syntax} refers to the structure of a program and the rules about that structure. For example, parentheses 
-have to come in matching pairs, so {\tt (1 + 2)} is legal, but {\tt 8)} is a {\bf syntax error}.
+Scala can only execute a program if the syntax is correct; otherwise, it displays an error message. {\bf Syntax} refers to the structure of a program and the rules about that structure. For example, parentheses have to come in matching pairs, so {\tt (1 + 2)} is legal, but {\tt 8)} is a {\bf syntax error}.
 
 \index{parentheses!matching}
 \index{syntax}
-\index{Cummings, E. E.}
 
-In English readers can tolerate most syntax errors, which is why we can read the poetry of E. E. Cummings without 
-spewing error messages. Scala, and programming languages in general, is not so forgiving.  If there is a single syntax
-error anywhere in your program, Scala will display an error message and quit, and you will not be able to run your
-program. During the first few weeks of your programming career, you will probably spend a lot of time tracking down
-syntax errors.  As you gain experience, you will make fewer errors and find them faster.
+In English, readers can tolerate most syntax errors, which is why we can read the poetry of E. E. Cummings without spewing error messages. Scala, and programming languages in general, is not so forgiving.  If there is a single syntax error anywhere in your program, Scala will display an error message and quit, and you will not be able to run your program. During the first few weeks of your programming career, you will probably spend a lot of time tracking down syntax errors.  As you gain experience, you will make fewer errors and find them faster.
 
 \subsection{Runtime errors}
 \label{runtime}
@@ -455,12 +427,9 @@ syntax errors.  As you gain experience, you will make fewer errors and find them
 \index{safe language}
 \index{language!safe}
 
-The second type of error is a runtime error, so called because the error does not appear until after the 
-program has started running. These errors are also called {\bf exceptions} because they usually indicate 
-that something exceptional (and bad) has happened.
+The second type of error is a runtime error, so called because the error does not appear until after the program has started running. These errors are also called {\bf exceptions} because they usually indicate hat something exceptional (and bad) has happened.
 
-Runtime errors are rare in the simple programs you will see in the first few chapters, so it might be a 
-while before you encounter one.
+Runtime errors are rare in the simple programs you will see in the first few chapters, so it might be a while before you encounter one.
 
 \subsection{Semantic errors}
 \index{semantics}
@@ -468,46 +437,55 @@ while before you encounter one.
 \index{error!semantic}
 \index{error message}
 
-The third type of error is the {\bf semantic error}.  If there is a semantic error in your program, it will 
-run successfully in the sense that the computer will not generate any error messages, but it will not do the 
-right thing.  It will do something else.  Specifically, it will do what you told it to do.
+The third type of error is the {\bf semantic error}.  If there is a semantic error in your program, it will run successfully in the sense that the computer will not generate any error messages, but it will not do the right thing.  It will do something else.  Specifically, it will do what you told it to do.
 
-The problem is that the program you wrote is not the program you wanted to write.  The meaning of the program 
-(its semantics) is wrong. Identifying semantic errors can be tricky because it generally requires you to work 
-backward by looking at the output of the program and trying to figure out what it is doing.
+The problem is that the program you wrote is not the program you wanted to write.  The meaning of the program (its semantics) is wrong. Identifying semantic errors can be tricky because it generally requires you to work backward by looking at the output of the program and trying to figure out what it is doing.
 
 \subsection{Experimental debugging}
 
-One of the most important skills you will acquire is debugging. Although it can be frustrating, debugging is one 
-of the most intellectually rich, challenging, and interesting parts of programming.
+One of the most important skills you will acquire is debugging. Although it can be frustrating, debugging is one of the most intellectually rich, challenging, and interesting parts of programming.
 
 \index{experimental debugging}
 \index{debugging!experimental}
 
-In some ways, debugging is like detective work.  You are confronted with clues, and you have to infer the processes 
-and events that led to the results you see.
+In some ways, debugging is like detective work.  You are confronted with clues, and you have to infer the processes and events that led to the results you see.
 
-Debugging is also like an experimental science.  Once you have an idea about what is going wrong, you modify your 
-program and try again.  If your hypothesis was correct, then you can predict the result of the modification, and 
-you take a step closer to a working program.  If your hypothesis was wrong, you have to come up with a new one.  
-As Sherlock Holmes pointed out, ``When you have eliminated the impossible, whatever remains, however improbable, 
-must be the truth.'' (A. Conan Doyle, {\em The Sign of Four})
+Debugging is also like an experimental science.  Once you have an idea about what is going wrong, you modify your program and try again.  If your hypothesis was correct, then you can predict the result of the modification, and you take a step closer to a working program.  If your hypothesis was wrong, you have to come up with a new one.  As Sherlock Holmes pointed out, ``When you have eliminated the impossible, whatever remains, however improbable, must be the truth.'' (A. Conan Doyle, {\em The Sign of Four})
 
 \index{Holmes, Sherlock}
 \index{Doyle, Arthur Conan}
 
-For some people, programming and debugging are the same thing.  That is, programming is the process of gradually 
-debugging a program until it does what you want.  The idea is that you should start with a program that does {\em 
-something} and make small modifications, debugging them as you go, so that you always have a working program.
+For some people, programming and debugging are the same thing.  That is, programming is the process of gradually debugging a program until it does what you want.  The idea is that you should start with a program that does {\em something} and make small modifications, debugging them as you go, so that you always have a working program.
 
-For example, Linux is an operating system that contains thousands of lines of code, but it started out as a simple 
-program Linus Torvalds used to explore the Intel 80386 chip.  According to Larry Greenfield, ``One of Linus's 
-earlier projects was a program that would switch between printing AAAA and BBBB.  This later evolved to Linux.'' 
+For example, Linux is an operating system that contains thousands of lines of code, but it started out as a simple program Linus Torvalds used to explore the Intel 80386 chip.  According to Larry Greenfield, ``One of Linus's earlier projects was a program that would switch between printing AAAA and BBBB.  This later evolved to Linux.'' 
 ({\em The Linux Users' Guide} Beta Version 1).
 
 \index{Linux}
 
-Later chapters will make more suggestions about debugging and other programming practices.
+\index{debugging}
+
+It is a good idea to read this book in front of a computer so you can try out the examples as you go.  You can run most of the examples in interactive mode, but if you put the code into a script, it is easier to try out variations.
+
+Whenever you are experimenting with a new feature, you should try to make mistakes.  For example, in the ``Hello, world!'' program, what happens if you leave out one of the quotation marks?  What if you leave out both?  What if you spell {\tt println} wrong?
+
+\index{error message}
+
+This kind of experiment helps you remember what you read; it also helps with debugging, because you get to know what the error messages mean. It is better to make mistakes now and on purpose than later and accidentally.
+
+\subsection{Be cautious}
+
+Programming, and especially debugging, sometimes brings out strong emotions.  If you are struggling with a difficult bug, you might feel angry, despondent or embarrassed.
+
+There is evidence that people naturally respond to computers as if they were people\footnote{See Reeves and Nass, {\it The Media Equation: How People Treat Computers, Television, and New Media Like Real People and Places}.}.  When they work well, we think of them as teammates, and when they are obstinate or rude, we respond to them the same way we respond to rude, obstinate people.
+
+\index{debugging!emotional response}
+\index{emotional debugging}
+
+Preparing for these reactions might help you deal with them. One approach is to think of the computer as an employee with certain strengths, like speed and precision, and particular weaknesses, like lack of empathy and inability to grasp the big picture.
+
+Your job is to be a good manager: Find ways to take advantage of the strengths and mitigate the weaknesses.  And find ways to use your emotions to engage with the problem, without letting your reactions interfere with your ability to work effectively.
+
+Learning to debug can be frustrating, but it is a valuable skill that is useful for many activities beyond programming.  At the end of each chapter there is a debugging section, like this one, with my thoughts about debugging.  I hope they help!
 
 \section{Formal and natural languages}
 \index{formal language}
@@ -515,53 +493,34 @@ Later chapters will make more suggestions about debugging and other programming 
 \index{language!formal}
 \index{language!natural}
 
-{\bf Natural languages} are the languages people speak, such as English, Spanish, and French.  They were not 
-designed by people (although people try to impose some order on them); they evolved naturally.
+{\bf Natural languages} are the languages people speak, such as English, Spanish, and French.  They were not designed by people (although people try to impose some order on them); they evolved naturally.
 
-{\bf Formal languages} are languages that are designed by people for specific applications.  For example, the 
-notation that mathematicians use is a formal language that is particularly good at denoting relationships 
-among numbers and symbols.  Chemists use a formal language to represent the chemical structure of molecules.  
-And most importantly:
+{\bf Formal languages} are languages that are designed by people for specific applications.  For example, the notation that mathematicians use is a formal language that is particularly good at denoting relationships among numbers and symbols.  Chemists use a formal language to represent the chemical structure of molecules.  And most importantly:
 
 \begin{quote}
 {\bf Programming languages are formal languages that have been designed to express computations.}
 \end{quote}
 
-Formal languages tend to have strict rules about syntax.  For example, $3 + 3 = 6$ is a syntactically correct 
-mathematical statement, but $3 + = 3 \mbox{\$} 6$ is not.  $H_2O$ is a syntactically correct chemical formula, 
-but $_2Zz$ is not.
+Formal languages tend to have strict rules about syntax.  For example, $3 + 3 = 6$ is a syntactically correct mathematical statement, but $3 + = 3 \mbox{\$} 6$ is not.  $H_2O$ is a syntactically correct chemical formula, but $_2Zz$ is not.
 
-Syntax rules come in two flavors, pertaining to {\bf tokens} and structure.  Tokens are the basic elements of 
-the language, such as words, numbers, and chemical elements.  One of the problems with $3 + = 3 \mbox{\$} 6$ 
-is that $\$$ is not a legal token in mathematics (at least as far as I know).  Similarly, $_2Zz$ is not legal 
-because there is no element with the abbreviation $Zz$.
+Syntax rules come in two flavors, pertaining to {\bf tokens} and structure.  Tokens are the basic elements of the language, such as words, numbers, and chemical elements.  One of the problems with $3 + = 3 \mbox{\$} 6$ is that $\$$ is not a legal token in mathematics (at least as far as I know).  Similarly, $_2Zz$ is not legal because there is no element with the abbreviation $Zz$.
 
 \index{token}
 \index{structure}
 
-The second type of syntax error pertains to the structure of a statement; that is, the way the tokens are 
-arranged.  The statement $3 + = 3 \mbox{\$} 6$ is illegal because even though $+$ and $=$ are legal tokens,
-in mathematical notation you can't have one right after the other.  Similarly, in a chemical formula the
-subscript comes after the element name, not before.
+The second type of syntax error pertains to the structure of a statement; that is, the way the tokens are arranged.  The statement $3 + = 3 \mbox{\$} 6$ is illegal because even though $+$ and $=$ are legal tokens, in mathematical notation you can't have one right after the other.  Similarly, in a chemical formula the subscript comes after the element name, not before.
 
 \begin{ex}
-Write a well-structured English sentence with invalid tokens in it.  Then write another sentence with all 
-valid tokens but with invalid structure.
+Write a well-structured English sentence with invalid tokens in it.  Then write another sentence with all valid tokens but with invalid structure.
 \end{ex}
 
-When you read a sentence in English or a statement in a formal language, you have to figure out what the 
-structure of the sentence is (although in a natural language you do this subconsciously).  This process 
-is called {\bf parsing}.
+When you read a sentence in English or a statement in a formal language, you have to figure out what the structure of the sentence is (although in a natural language you do this subconsciously).  This process is called {\bf parsing}.
 
 \index{parse}
 
-For example, when you hear the sentence, ``The penny dropped,'' you understand that ``the penny'' is the 
-subject and ``dropped'' is the predicate.  Once you have parsed a sentence, you can figure out what it 
-means, or the semantics of the sentence.  Assuming that you know what a penny is and what it means to 
-drop, you will understand the general implication of this sentence.
+For example, when you hear the sentence, ``The penny dropped,'' you understand that ``the penny'' is the subject and ``dropped'' is the predicate.  Once you have parsed a sentence, you can figure out what it means, or the semantics of the sentence.  Assuming that you know what a penny is and what it means to drop, you will understand the general implication of this sentence.
 
-Although formal and natural languages have many features in common---tokens, structure, syntax, and 
-semantics---there are some differences:
+Although formal and natural languages have many features in common---tokens, structure, syntax, and semantics---there are some differences:
 
 \index{ambiguity}
 \index{redundancy}
@@ -569,23 +528,15 @@ semantics---there are some differences:
 
 \begin{description}
 
-\item[ambiguity:] Natural languages are full of ambiguity, which people deal with by using contextual 
-clues and other information. Formal languages are designed to be nearly or completely unambiguous, which 
-means that any statement has exactly one meaning, regardless of context.
+\item[ambiguity:] Natural languages are full of ambiguity, which people deal with by using contextual clues and other information. Formal languages are designed to be nearly or completely unambiguous, which means that any statement has exactly one meaning, regardless of context.
 
-\item[redundancy:] In order to make up for ambiguity and reduce misunderstandings, natural languages employ 
-lots of redundancy.  As a result, they are often verbose.  Formal languages are less redundant and more 
-concise.
+\item[redundancy:] In order to make up for ambiguity and reduce misunderstandings, natural languages employ lots of redundancy.  As a result, they are often verbose.  Formal languages are less redundant and more concise.
 
-\item[literalness:] Natural languages are full of idiom and metaphor. If I say, ``The penny dropped,'' 
-there is probably no penny and nothing dropping\footnote{This idiom means that someone realized something 
-after a period of confusion.}.  Formal languages mean exactly what they say.
+\item[literalness:] Natural languages are full of idiom and metaphor. If I say, ``The penny dropped,'' there is probably no penny and nothing dropping\footnote{This idiom means that someone realized something after a period of confusion.}.  Formal languages mean exactly what they say.
 
 \end{description}
 
-People who grow up speaking a natural language---everyone I know---often have a hard time adjusting to 
-formal languages.  In some ways, the difference between formal and natural language is like the 
-difference between poetry and prose, but more so:
+People who grow up speaking a natural language---everyone I know---often have a hard time adjusting to formal languages.  In some ways, the difference between formal and natural language is like the difference between poetry and prose, but more so:
 
 \index{poetry}
 \index{prose}
@@ -598,119 +549,70 @@ together creates an effect or emotional response.  Ambiguity is not only common 
 \item[Prose:] The literal meaning of words is more important, and the structure contributes more 
 meaning.  Prose is more amenable to analysis than poetry but still often ambiguous.
 
-\item[Programs:] The meaning of a computer program is unambiguous and literal, and can be understood 
-entirely by analysis of the tokens and structure.
+\item[Programs:] The meaning of a computer program is unambiguous and literal, and can be understood entirely by analysis of the tokens and structure.
 
 \end{description}
 
-Here are some suggestions for reading programs (and other formal languages).  First, remember that 
-formal languages are much more dense than natural languages, so it takes longer to read them.  Also, 
-the structure is very important, so it is usually not a good idea to read from top to bottom, left 
-to right.  Instead, learn to parse the program in your head, identifying the tokens and interpreting 
-the structure.  Finally, the details matter.  Small errors in spelling and punctuation, which you can 
-get away with in natural languages, can make a big difference in a formal language.
+Here are some suggestions for reading programs (and other formal languages).  First, remember that formal languages are much more dense than natural languages, so it takes longer to read them.  Also, the structure is very important, so it is usually not a good idea to read from top to bottom, left to right.  Instead, learn to parse the program in your head, identifying the tokens and interpreting the structure.  Finally, the details matter.  Small errors in spelling and punctuation, which you can get away with in natural languages, can make a big difference in a formal language.
 
 \section{The first program}
 \label{hello}
 
 \index{Hello, World}
 
-Traditionally, the first program you write in a new language is called ``Hello, World!'' 
-because all it does is display the words, ``Hello, World!''  In Ocaml, one version looks 
+Traditionally, the first program you write in a new language is called ``Hello World!'' 
+because all it does is display the words, ``Hello World!''  In Scala, one version looks 
 like this:
 
 \beforeverb
 \begin{verbatim}
-print_string "Hello, World!\n";;
+println("Hello World!")
+//yay, we did it!
 \end{verbatim}
 \afterverb
 
-This is an example of a {\bf print statement}, which doesn't actually print anything on paper. 
-It displays a value on the screen.  In this case, the result is:
+Put this into a file called {\tt hello.scala} and run this file by typing {\tt scala hello.scala} in the terminal. This is an example of a {\bf print statement}, which doesn't actually print anything on paper. It displays a value on the screen. In this case, the result is:
 
 \beforeverb
 \begin{verbatim}
-Hello, World!
-- : unit = ()
+Hello World!
 \end{verbatim}
 \afterverb
 
-The quotation marks in the program mark the beginning and end of the text to be displayed; they 
-don't appear in the result. The ``\verb"\n"'' is an {\bf escape character} \footnote{An escape character 
-is a special character within a string denoted by a ``whack'' (``\textbackslash'') followed by a character or 
-series of characters that results in a special character, such as a new line.}, specifically the 
-newline character, which tells the output to move to a new line.
+{\tt println} is the name of the command that is invoked. The command has one argument,
+{\verb"""\verb"Hello World!"\verb"""}, which is the thing to be printed, enclosed in parenthesis. The quotation marks mark the beginning and end of the text to be displayed; they don't appear in the result. The second line of our program doesn't do anything. As indicated by the two slashes, it is a comment. Comments are often used to explain how a program works to human beings reading it\footnote{or for complaining to them}, but are ignored by the interpreter. 
 
-\index{escape character}
 \index{quotation mark}
 \index{print statement}
 \index{statement!print}
 
-There's another, more general print statement called ``printf,'' which lets you do more than {\tt print\verb"_"string}.
-Printf comes from it's own {\bf module}, called Printf, meaning you call printf by typing ``Printf.printf.' 
-Modules are extensions of OCaml that often contain useful functions. Printf is a standard module, meaning
-it comes prepackaged with most OCaml installations. You can look up printf on your own if you're interested.
+Some people judge the quality of a programming language by the simplicity of the ``Hello World!'' program.  By this standard, Scala does \footnote{Or can do, anyway. There are about as many different Scala ``Hello World!'' programs as there are Scala programmers, all arguably equally valid.} about as well as possible.
 
-Alternatively, you can import the module by using the \verb"#use" directive:
+Let's explore some other ways to print stuff on the screen. You might have noticed that our ``Hello World!'' program actually did a little bit more than just print ``Hello World!''. It also printed a so-called newline character, which is an invisible character that tells the terminal to start a new line. Let's modify our program:
 
 \beforeverb
 \begin{verbatim}
-# #use "printf.ml"
+println("Hello World!")
+println("Hello World!")
 \end{verbatim}
 \afterverb
-%
-And then call printf simply as {\tt printf}. However, importing a module generally isn't advised  unless you're really going to use functions from that module a lot.
 
-\index{module}
+Running it again will print:
 
-Really, we could simply just type ``Hello, World!'' and get the result ``{\tt - : string = ''Hello, World!''.}''
+\beforeverb
+\begin{verbatim}
+Hello World!
+Hello World!
+\end{verbatim}
+\afterverb
 
-Some people judge the quality of a programming language by the simplicity of the ``Hello, World!'' program.  By this standard, OCaml does \footnote{Or can do, anyway. There are about as many different OCaml ``Hello, World!'' programs as there are OCaml programmers, all arguably equally valid.} about as well as possible.
+Now you can clearly see that each {\tt println} also prints a newline. As you might have guessed {\tt println} stands for ``print line''. So now let's change the first {\tt println} to {\tt print} and see what happens. The result looks like this:
 
-\section{Functional, as opposed to...?}
-
-\index{Functional Programming}
-\index{Programming!Functional}
-\index{Programming Paradigms}
-\index{Programming Paradigms!Functional}
-\index{Programming Paradigms!Object-Oriented}
-
-{\bf Functional Programming} is a programming paradigm where the function is a
-first-class citizen. Now, this is of course a silly definition, but
-it's the best we can really do for now.
-
-Another popular programming paradigm is {\bf
-  Object-Oriented}. Languages that are object-oriented, such as C++
-and Python, focus rather on having ``objects'' and changing
-them. ``Object'' is really kind of a blanket term for all kinds of
-different, often custom, ways of storing data.
-
-OCaml is mostly a functional programming language. However, OCaml has support for some level of object-oriented programming, unlike it's predecessor Caml. The ``O'' in OCaml stands for ``Objective''.\footnote{``Caml'' once stood for ``Categorical Abstract Machine Language'' but it doesn't any more. Now it just represents an even-toed ungulate with humps on its back.}
-
-\section{Debugging}
-\index{debugging}
-
-It is a good idea to read this book in front of a computer so you can try out the examples as you go.  You can run most of the examples in interactive mode, but if you put the code into a script, it is easier to try out variations.
-
-Whenever you are experimenting with a new feature, you should try to make mistakes.  For example, in the ``Hello, world!'' program, what happens if you leave out one of the quotation marks?  What if you leave out both?  What if you spell {\tt print\verb"_"string} wrong?
-
-\index{error message}
-
-This kind of experiment helps you remember what you read; it also helps with debugging, because you get to know what the error messages mean. It is better to make mistakes now and on purpose than later and accidentally.
-
-Programming, and especially debugging, sometimes brings out strong emotions.  If you are struggling with a difficult bug, you might feel angry, despondent or embarrassed.
-
-There is evidence that people naturally respond to computers as if they were people\footnote{See Reeves and Nass, {\it The Media Equation: How People Treat Computers, Television, and New Media Like Real People and Places}.}.  When they work well, we think of them as teammates, and when they are obstinate or rude, we respond to them the same way we respond to rude, obstinate people.
-
-\index{debugging!emotional response}
-\index{emotional debugging}
-
-Preparing for these reactions might help you deal with them. One approach is to think of the computer as an employee with certain strengths, like speed and precision, and particular weaknesses, like lack of empathy and inability to grasp the big picture.
-
-Your job is to be a good manager: find ways to take advantage of the strengths and mitigate the weaknesses.  And find ways to use your emotions to engage with the problem, without letting your reactions interfere with your ability to work effectively.
-
-Learning to debug can be frustrating, but it is a valuable skill that is useful for many activities beyond programming.  At the end of each chapter there is a debugging section, like this one, with my thoughts about debugging.  I hope they help!
-
+\beforeverb
+\begin{verbatim}
+Hello, World!Hello, World!
+\end{verbatim}
+\afterverb
 
 \section{Glossary}
 
@@ -719,7 +621,7 @@ Learning to debug can be frustrating, but it is a valuable skill that is useful 
 \item[problem solving:]  The process of formulating a problem, finding a solution, and expressing the solution.
 \index{problem solving}
 
-\item[high-level language:]  A programming language like OCaml that is designed to be easy for humans to read and write.
+\item[high-level language:]  A programming language like Scala that is designed to be easy for humans to read and write.
 \index{high-level language}
 
 \item[low-level language:]  A programming language that is designed to be easy for a computer to execute; also called ``machine language'' or ``assembly language.''
@@ -743,20 +645,24 @@ Learning to debug can be frustrating, but it is a valuable skill that is useful 
 \item[executable:]  Another name for object code that is ready to be executed.
 \index{executable}
 
+\item[statement:] A part of a program that specifies an action
+that will be performed when the program runs.  A print statement
+causes output to be displayed on the screen.
+
+\item[comment:] A part of a program that contains information
+about the program, but that has no effect when the program runs.
+
 \item[prompt:] Characters displayed by the interpreter to indicate that it is ready to take input from the user.
 \index{prompt}
 
 \item[script:] A program stored in a file (usually one that will be interpreted).
 \index{script}
 
-\item[interactive mode:] A way of using the OCaml interpreter by typing commands and expressions at the prompt.
-\index{interactive mode}
-
 \item[script mode:] A way of using the OCaml interpreter to read and execute statements in a script.
 \index{script mode}
 
-\item[toplevel:] The interface you interact with when working with the interpreter.
-\index{toplevel}
+\item[REPL:] The interface you interact with when working with the interpreter by typing commands and expressions at the prompt.
+\index{REPL}
 
 \item[program:] A set of instructions that specifies a computation.
 \index{program}
@@ -797,32 +703,78 @@ Learning to debug can be frustrating, but it is a valuable skill that is useful 
 \item[parse:]  To examine a program and analyze the syntactic structure.
 \index{parse}
 
-\item[print statement:]  An instruction that causes the OCaml interpreter to display a value on the screen.
+\item[print statement:]  An instruction that causes the Scala interpreter to display a value on the screen.
 \index{print statement}
 \index{statement!print}
 
-
 \end{description}
-
 
 \section{Exercises}
 
 \begin{ex}
-Use a web browser to go to the OCaml website \url{caml.inria.fr}. This page contains information about OCaml (and Caml Light) and links to OCaml-related pages, and it gives you the ability to search the Ocaml documentation.
 
-Note that OCaml, like all good things, comes from France (hence the .fr in the url).
+Computer scientists have the annoying habit of using common
+English words to mean something different from their common
+English meaning.  For example, in English, a statement and
+a comment are pretty much the same thing, but when we are
+talking about a program, they are very different.
 
-\index{documentation}
-\index{caml.inria.fr}
+The glossary at the end of each chapter is intended to highlight
+words and phrases that have special meanings in computer science.
+When you see familiar words, don't assume that you know what 
+they mean!
+
+\begin{enumerate}
+
+\item In computer jargon, what is the difference between a statement and a comment?
+
+\item What is the difference between a compiler and an interpreter?
+
+\item What does it mean to say that a program is portable?
+
+\item What is an executable?
+
+\end{enumerate}
+
 \end{ex}
 
 \begin{ex}
-Open the OCaml toplevel and create a ``Hello, World!'' program in interactive mode.
-
-Now, create a script called ``hello.ml'' that is a ``Hello, World!'' program and run it.
-
-Experiment with several different methods of writing this program. In particular, write at least one method using the Printf module. Use the OCaml documentation online to understand enough of this module to do so.
+Open the Scala REPL and create a ``Hello, World!'' program in interactive mode. Now, create a script called ``hello.scala'' that is a ``Hello, World!'' program and run it.
 \end{ex}
+
+\begin{ex}
+Experiment with several different methods of writing this program. In particular, write at least one method using {\tt print} and one that uses several print statements. Note that you can print newline characters with {\tt \verb"\"n}. For example, {\tt println(\verb"""\verb"\"na\verb"\"nb\verb"\"nc\verb""") } will print a, b and c each on a new line.
+
+\end{ex}
+
+\begin{ex}
+
+It is a good idea to commit as many errors as you can think of,
+so that you see what error messages the compiler produces.
+Sometimes the compiler will tell you exactly what is wrong, and all
+you have to do is fix it.  Sometimes, though, the compiler will produce
+wildly misleading messages.  You will develop a sense for when you can
+trust the compiler and when you have to figure things out yourself.
+
+\begin {enumerate}
+
+\item Remove one or both of the parentheses.
+
+\item Insert a space in place of the first parentheses and leave out the second.
+
+\item Instead of {\tt println}, write {\tt pintln}.
+
+\item Remove {\tt println}.
+
+\item Remove everything inside the parentheses.
+
+\item Add extra parentheses.
+
+\item Give several parameters to {\tt println}, separated by commas.
+
+\end {enumerate}
+\end{ex}
+
 
 
 \chapter{Variables and Expressions}
@@ -838,12 +790,12 @@ These values belong to different {\bf types}: {\tt 2} is an integer, and {\tt "H
 
 \index{quotation mark}
 
-You've already seen \verb"print_string". There's also a print statement for integers:
+You've already used seen \verb"println" to print Strings. You can also use it for integers:
 
 \beforeverb
 \begin{verbatim}
-# print_int 4;;
-4- : unit = ()
+scala> println(4)
+4
 \end{verbatim}
 \afterverb
 
@@ -851,18 +803,18 @@ If you are not sure what type a value has, the interpreter will tell you.
 
 \beforeverb
 \begin{verbatim}
-# let a = 1;;
-val a : int = 1;;
-# let foo = "Hello, World!"
-val foo : string = "Hello, World!"
+scala> :type 4
+Int
+
+scala> :type "hello"
+java.lang.String
 \end{verbatim}
 \afterverb
 %
-Not surprisingly, strings belong to the type {\tt string} and
-integers belong to the type {\tt int}.  Less obviously, numbers
-with a decimal point belong to a type called {\tt float},
-because these numbers are represented in a
-format called {\bf floating-point}.
+Not surprisingly, strings belong to the type {\tt String}\footnote{What is the {\tt java.lang.} doing there? Be patient, we will get to it later.} and
+integers belong to the type {\tt Int}.  Less obviously, numbers
+with a decimal point belong to a type called {\tt Double},
+because these numbers are represented in a format called {\bf double precision floating-point}.
 
 \index{type}
 \index{string type}
@@ -874,66 +826,55 @@ format called {\bf floating-point}.
 
 \beforeverb
 \begin{verbatim}
-# let a = 3.2;;
-val a : float = 3.2
+scala> :type 1.5
+Double
 \end{verbatim}
 \afterverb
 
-There's also a separate type called ``char,'' which is short for ``character.'' 
+There's also a separate type called ``Char,'' which is short for ``character.'' 
 A char is like a string, but it's only one character long (hence the name), and it's surrounded 
 by single quotes instead of double quotes. In fact, strings are comprised of lists
 of chars. \footnote{A note on pronunciation: most often, ``char'' is pronounced like in charcoal. 
 It's less standard, but I personally prefer to pronounce it like it appears in character, since 
-that's where it came from.} Usually, you'll use strings, but if you really only need one character, 
-chars use less memory.
+that's where it came from.} Usually, you'll use strings, but if you really only need one character, chars use less memory.
 
 \index{char type}
 \index{type!char}
 
 \beforeverb
 \begin{verbatim}
-# let foo = 'a';;
-val foo : char = 'a'
+scala> :type 'a'
+Char
 \end{verbatim}
 \afterverb
 
-If you attempt to make a char that's more than one character in length, you get a syntax error:
+If you attempt to make a Char that's more than one character in length, you get a syntax error:
 
 \beforeverb
 \begin{verbatim}
-# let foo = 'ab';;
-Error: Syntax error
+scala> 'aa'
+<console>:1: error: unclosed character literal
+       'aa'
+          ^
 \end{verbatim}
 \afterverb
 
-If you enclose a number in quotes, OCaml will infer that it is a char or string, 
+If you enclose a number in quotes, Scala will infer that it is a char or string, 
 depending on the number of quotes.
 
 When you type a large integer, you might be tempted to use commas
 between groups of three digits, as in {\tt 1,000,000}.  This is not a
-legal integer in OCaml, but it is legal:
-
-\beforeverb
-\begin{verbatim}
->>> 1,000,000
-- : int * int * int = (1, 0, 0)
-\end{verbatim}
-\afterverb
-
-Well, that's not what we expected at all!  OCaml interprets {\tt  1,000,000} 
-as a comma-separated sequence of integers. Nevermind the type of this object; 
-we'll get to it later.
-
-\index{semantic error}
-\index{error!semantic}
-\index{error message}
-
-This is the first example we have seen of a semantic error: the code
-runs without producing an error message, but it doesn't do the
-``right'' thing.
+legal integer in Scala.
 
 There's also one more type, called {\bf unit}, represented as (). This represents 
 a sort of ``void''  or ``empty'' value. You'll see where this pops up, and can be useful, later.
+
+\beforeverb
+\begin{verbatim}
+scala> :type ()
+Unit
+\end{verbatim}
+\afterverb
 
 \index{type!unit}
 \index{unit type}
@@ -945,20 +886,21 @@ a sort of ``void''  or ``empty'' value. You'll see where this pops up, and can b
 
 One of the most powerful features of a programming language is the
 ability to manipulate {\bf variables}.  A variable is a name that
-refers to a value. In OCaml, variables {\it really} refer to expressions, 
-but don't worry about that for now.
+refers to a value.
 
 An {\bf assignment statement} creates new variables and gives
 them values:
 
 \beforeverb
 \begin{verbatim}
-# let message = "Don't forget to buy milk.";;
-val message : string = "Don't forget to buy milk."
-# let n = 17;;
-val n : int = 17
-# let pi = 3.14159265;;
-val pi : float = 3.14159265
+scala> val message = "Don't forget to buy milk!"
+message: java.lang.String = Don't forget to buy milk!
+
+scala> val n = 17
+n: Int = 17
+
+scala> val pi = 3.14
+pi: Double = 3.14
 \end{verbatim}
 \afterverb
 
@@ -980,83 +922,67 @@ This diagram shows the result of the previous example:
 \centerline{\includegraphics{figs/state2.eps}}
 \afterfig
 
-To display the value of a variable, you can simply type it in the toplevel:
+To display the value of a variable, you can simply type it in the REPL:
 
 \beforeverb
 \begin{verbatim}
-# n;;
-- : int = 17
-# pi;;
-- : float = 3.14159265
+scala> n
+res0: Int = 17
+
+scala> pi
+res1: Double = 3.14
 \end{verbatim}
 \afterverb
 
 \section{Variable names and keywords}
 \index{keyword}
 
-Programmers generally choose names for their variables that
-are meaningful---they document what the variable is used for.
+Programmers generally choose names for their variables that are meaningful---they document what the variable is used for.
 
-Variable names can be arbitrarily long.  They can contain
-both letters and numbers, but they have to begin with a letter.
-It is legal to use uppercase letters, but it is a good idea
-to begin variable names with a lowercase letter (you'll
-see why later).
+Variable names can be arbitrarily long.  They can contain both letters and numbers, but they have to begin with a letter. It is legal to use uppercase letters, but it is a good idea to begin variable names with a lowercase letter (you'll see why later).
 
-The underscore character (\verb"_") can appear in a name.
-It is often used in names with multiple words, such as
-\verb"my_name" or \verb"airspeed_of_unladen_swallow", or 
-to denote subscripts, such as \verb"y_0" as an initial 
-condition. So can an apostraphe (\verb"'"), such as 
-\verb"h'".
+The underscore character (\verb"_") can also appear in a name, but it is rarely used in Scala.
+If you need a name with multiple words, such as \verb"my name" or \verb"airspeed of unladen swallow", you should use {\bf camel case}: \verb"myName" and \verb"airspeedOfUnladenSwallow". Note that you cannot just use a space, because then Scala would interpret it as two names of two different variables.
 
 \index{underscore character}
+\index{camel case}
 
-If you give a variable an illegal name, you get a syntax 
-error:
+If you give a variable an illegal name, you get a syntax error:
 
 \beforeverb
 \begin{verbatim}
-# let 17h = 17*17;;
-Error: Syntax error
-# let more@ = "hello";;
-Error: Sytax error
-# let class = 2;;
-Error: Syntax error
+scala> val 17squared = 17*17
+<console>:1: error: Invalid literal number
+       val 17squared = 17*17
+           ^
+
+scala> val more@ = "hello"
+<console>:1: error: illegal start of simple pattern
+       val more@ = "hello"
+                 ^
+
+scala> val class = 2
+<console>:1: error: illegal start of simple pattern
+       val class = 2
+           ^
 \end{verbatim}
 \afterverb
 
-At the toplevel, OCaml will be nice and even underline 
-where the error occured for you.
+In the REPL, Scala will be nice and even point to where the error occured for you.
 
-{\tt 7h} is illegal because it does not begin with a letter.
+{\tt 17squared} is illegal because it does not begin with a letter. The error message is fairly straightforward.
+
 {\tt more@} is illegal because it contains an illegal character, {\tt
-@}.  But what's wrong with {\tt class}?
+@}.  But what does the error message mean? The interpreter is confused because it encountered an {\tt @}, which has a special meaning in Scala. The meaning of the error message will become clear later, when we talk about pattern matching.
 
-It turns out that {\tt class} is one of OCaml's {\bf keywords}.  The
+But what's wrong with {\tt class}?
+It turns out that {\tt class} is one of Scala's {\bf keywords}.  The
 interpreter uses keywords to recognize the structure of the program,
 and they cannot be used as variable names. The full list of keywords 
-can be found online here: 
-\url{http://caml.inria.fr/pub/docs/manual-ocaml/manual044.html}.
+can be found in the scala reference at
+\url{http://www.scala-lang.org/node/198}. I would recommend reading this document much later though, as it is very technical.
 
 \index{keyword}
-
-You'll get a really interesting error if you try to use just a 
-number as a variable:
-
-\beforeverb
-\begin{verbatim}
-# let 17 = 2;;
-Warning P: this pattern-matching is not exhaustive.
-Here is an example of a value that is not matched:
-0
-Exception: Match_failure ("", 8, -17).
-\end{verbatim}
-\afterverb
-
-That's fun. Technically, this is a semantic error causing a 
-syntax error. This will make a little more sense later when
-we talk about pattern-matching.
 
 \section{Operators and operands}
 \index{operator, arithmetic}
@@ -1066,16 +992,9 @@ we talk about pattern-matching.
 
 {\bf Operators} are special symbols that represent computations like
 addition and multiplication.  The values the operator is applied to
-are called {\bf operands}.
+are called its {\bf operands}.
 
 \index{operator}
-
-In OCaml, operators are {\bf strictly typed}, meaning you can't use an integer operator
-for a float, or vice versa. OCaml, unlike some other programming languages, won't
-even infer that you meant a float when you put an int, or vice versa. This can make
-debugging type errors much simpler, though it seems like a pain at first.
-
-\index{Strictly typed}
 
 For integers, the operators {\tt +}, {\tt -}, {\tt *}, and {\tt /}
 perform addition, subtraction, multiplication, and division, as in 
@@ -1087,36 +1006,27 @@ the following examples:
 \end{verbatim}
 \afterverb
 
-For floating-points, the operators are the same, but followed by a period, namely 
-{\tt +.}, {\tt -.}, {\tt *.}, and {\tt /.}. There is also a floating point operator for
-exponentiation, namely {\tt **}. There is no integer exponention, probably because an integer
-raised to a negative integer would result in a non-integer. \footnote{This is not to say that 
-a function can't take two integers and return a float.}
+For floating-points, the operators are the same, but the {\tt /} operator has a different effect. For integers, {\tt /} yields the integer quotient. so {\tt 5 / 2} is 2 and {\tt 1 / 2 is 0}. For Doubles, {\tt /} probably does what you expect: {\tt 5 / 2} is {\tt 2.5} and {\tt 1 / 2} is {\tt 0.5}.
 
-In some other languages, \verb"^" is used for exponentiation, but
-in OCaml it is used for string concatenation, meaning the two strings 
-are added end-to-start, such as in the following example:
+The {\tt +} operator also works with strings, concatenating them.
+\beforeverb
+\begin{verbatim}
+scala> "two strings " + "become one"
+res0: java.lang.String = two strings become one
+\end{verbatim}
+\afterverb
+
+It can even be used to concatenate strings with numbers.
 
 \beforeverb
 \begin{verbatim}
- # "Hello, "^"World!";;
-- : string = "Hello, World!"
+scala> "The value of pi is " + 3.14
+res3: java.lang.String = The value of pi is 3.14
 \end{verbatim}
 \afterverb
 
 Don't forget to put a space somewhere so your words are separated 
 when you concatenate.
-
-You can change an int to a float or vice versa using the 
-OCaml functions \verb"float_of_int" or \verb"int_of_float", like so:
-
-\beforeverb
-\begin{verbatim}
- float_of_int x;; int_of_float x;;
-\end{verbatim}
-\afterverb
-
-I'll leave determining which is which as an exercise to the reader.
 
 \section{Expressions}
 
@@ -1130,178 +1040,99 @@ expressions (assuming that the variable {\tt x} has been assigned a value):
 
 \beforeverb
 \begin{verbatim}
-17;;
-x;;
-x + 17;;
+17
+x
+x + 17
 \end{verbatim}
 \afterverb
-%
-If you type an expression in interactive mode, the interpreter
+
+If you type an expression in the REPL, the interpreter
 {\bf evaluates} it and displays the result:
 
 \beforeverb
 \begin{verbatim}
-# 1 + 1;;
-- : int = 2
+scala> 1 + 1
+res4: Int = 2
 \end{verbatim}
 \afterverb
 
 \index{subexpressions}
 Expressions can, and often do,\footnote{Any expression with more than just a value or 
 variable technically contains subexpressions.} contain other expressions, called {\bf 
-subexpressions}. When evaluating the value of the expression, the OCaml interpreter 
+subexpressions}. When evaluating the value of the expression, the Scala interpreter 
 will evaluate the embedded expression and substitute it in to the larger expression. 
-In OCaml, and many other function-oriented languages, everything must be an expression. 
-Everything up to a double semi-colon ({\tt ;;}) must be exactly one expression, with 
-arbitrarily many sub-expressions.
+In Scala, everything that goes on one line and isn't separated by a semicolon must be one expression, although a single expression can span multiple lines.
 
 \begin{ex}
-Type the following statements in the OCaml interpreter to see
-what they do:
+Type the following statements in the Scala interpreter to see what they do:
 
 \beforeverb
 \begin{verbatim}
-5;;
-let x = 5;;
-x + 1;;
+5
+val x = 5
+x + 1
 \end{verbatim}
 \afterverb
-%
+
 Now put the same statements into a script and run it.  What
-is the output?
+is the output? How can you modify it to print the value of {\tt x + 1}?
 \end{ex}
 
-\section{Variables as Expressions, and References}
+\section{Variables as Expressions and References}
 
 \index{Variables!References}
 \index{References}
 
 Now, this is where I admit that I lied to you a little bit.
 
-Remember how I said that the expression ``let x = 3;;'' assigns
+Remember how I said that the expression {\tt val x = 3} assigns
 the values of `3' to the variable `x'? Well, that's not
 entirely true. In fact, it's not true at all.
 
-What really happens when I say ``let x = 3;;'' is that the {\it expression}
+What really happens when I say {\tt val x = 3} is that the {\it expression}
 `3' is represented by `x'. `x' becomes kind of a shorthand way of writing `3'.
 
 One of the side effects of this is that you can't change the value of a variable.
 So, really, in some sense, they shouldn't be called variables at all.
 
-\section{Scope}
 
-Now, I said you couldn't change the value of variables, but in some senses it looks like you can.
 
-\index{Scope}
+%TODO: explain difference between vals and vars
 
-\beforeverb
-\begin{verbatim}
- # let x = 2;;
-val x : int = 2
- # let x = 3;;
-val x : int = 3;;
- # x;;
-- : x = 3
-\end{verbatim}
-\afterverb
-
-See? The value of `x' changed! Didn't it?
-
-\index{scope}
-Actually, the answer is no, it didn't. What we have here is a problem of {\bf scope}. You see, variables
-all act within certain bounds, or on certain levels within a program. Every time we say ``let'', it kind of
-creates a new ``level'' of the program, within which only certain variables can be accessed. This brings up
-let's counterpart, `in'. The best way to explain `in' is with an example.
-
-\beforeverb
-\begin{verbatim}
- # let x = 2;;
-val x : int = 2
- # let x = 3 in x+1;;
-- : int = 4
- # x;;
-- : int = 2
-\end{verbatim}
-\afterverb
-
-Now, didn't see that last bit coming, did you? When you use ``let... in...;;'', the value assigned by the let only
-exists within the expression after in. This is called a ``let-in-binding''.
-
-\index{let}
-\index{in}
-
-\begin{ex}
- Play around with scope a little bit in the command line.
-
- See if you can predict the outcome of the following:
- 
- \newcounter{exno}
-\begin{list}{\arabic{exno}}{}
-  \item
- \beforeverb
- \begin{verbatim}
-  # let x = 2 in x+1;;
-  # let x = 3 in x+1;;
-  # x;;
- \end{verbatim}
- \afterverb
-   \item 
- \beforeverb
- \begin{verbatim}
-  # let x = 2;;
-  # let y = 3 in let x = 2 in x+y;;
-  # x;;
-  # y;;
- \end{verbatim}
- \afterverb
-\end{list}
-
-Now try them out in the interpreter and see if you were right!
-\end{ex}
 
 
 \section{Order of operations}
 \index{order of operations}
 \index{rules of precedence}
-\index{PEMDAS}
 
 When more than one operator appears in an expression, the order of
 evaluation depends on the {\bf rules of precedence}.  For
-mathematical operators, OCaml follows mathematical convention.
-The acronym {\bf PEMDAS} is a useful way to
-remember the rules:
+mathematical operators, Scala follows mathematical convention.
 
 \index{parentheses!overriding precedence}
 
 \begin{itemize}
 
-\item {\bf P}arentheses have the highest precedence and can be used 
+\item Parentheses have the highest precedence and can be used 
 to force an expression to evaluate in the order you want. Since
-expressions in parentheses are evaluated first, {\tt 2 * (3-1)} is 4,
-and {\tt (1.+.1.)**(5.-.2.)} is 8.. You can also use parentheses to make an
+expressions in parentheses are evaluated first, {\tt 2 * (3 - 1)} is 4,
+and {\tt (1 + 1)*(5 - 2)} is 6. You can also use parentheses to make an
 expression easier to read, as in {\tt (minute * 100) / 60}, even
 if it doesn't change the result.
 
-\item {\bf E}xponentiation has the next highest precedence, so
-{\tt 2.**1.+.1.} is 3., not 4., and {\tt 3.*1.**3.} is 3., not 27..
-
-\item {\bf M}ultiplication and {\bf D}ivision have the same precedence,
-which is higher than {\bf A}ddition and {\bf S}ubtraction, which also
-have the same precedence.  So {\tt 2*3-1} is 5, not 4, and
-{\tt 6+4/2} is 8, not 5.
+\item Multiplication has higher precedence than division,
+division has higher precedence than addition, which in turn has higher precedence than subtraction. So {\tt 2 * 3 - 1} is 5, not 4, and {\tt 6 + 4 / 2} is 8, not 5.
 
 \item Operators with the same precedence are evaluated from left to 
-right.  So in the expression {\tt degrees /. 2. * pi}, the division
-happens first and the result is multiplied by {\tt pi}.  
-To divide by $2 \pi$, you can use parentheses or write {\tt degrees /. 2. /. pi}.
+right.  So in the expression {\tt 4 / 2 / 2}, the subexpression {\tt 4 / 2} is evaluated first and the result is divided by {\tt 2}, yielding 1.
 
 \end{itemize}
 
 Technically speaking, all operations in the programming language follow some sort
 of order of operations. However, you don't really need to know more than that 
 parentheses override all that precedence. In fact, if you need to know more about
-the order of operations than the above mathematical rules, then you're not making
-your code clear enough and should use parentheses to make things more clear.
+the order of operations than the above mathematical rules, then you might not be making
+your code clear enough and should use parentheses to make things clearer.
 
 \section{String operations}
 \index{string!operation}
@@ -1312,14 +1143,11 @@ if the strings look like numbers, so the following are illegal:
 
 \beforeverb
 \begin{verbatim}
-"2"-"1"    "eggs"/"easy"    "third"*"a charm"  "you"+"me"
+"2"-"1"    "eggs"/"easy"    "third"*"a charm"
 \end{verbatim}
 \afterverb
 
-In OCaml, an operator cannot be used for two things. In some languages,
-for example Python, operators can be {\bf overloaded}, meaning they do different
-things in different situations (i.e., `+' can be used for string concatenation).
-In OCaml, this is not the case.
+As we saw before, you can use the + operator to concatenate two strings. Technically, that is not the same plus operator though. Think of it as two operators that happen to be written the same. Giving ``one'' operator multiple meanings is called {\bf operator overloading}.
 
 \index{operator!overloading}
 
@@ -1331,26 +1159,34 @@ to read.  Formal languages are dense, and it is often difficult to
 look at a piece of code and figure out what it is doing, or why.
 
 For this reason, it is a good idea to add notes to your programs to explain
-in natural language what the program is doing.  These notes are called
-{\bf comments}, and they start with a \verb"(*" and end with a \verb"*)":
+in natural language what the program is doing.  As you have seen before, this can be done with {\bf comments}. There are two kinds of comments in Scala. Single-line comments start with a {\tt //} and extend to the end of the line:
 
 \beforeverb
 \begin{verbatim}
-(* compute the percentage of the hour that has elapsed *)
-percentage = (minute * 100) / 60
+// compute the percentage of the hour that has elapsed
+val percentage = (minute * 100.0) / 60.0
 \end{verbatim}
 \afterverb
 
-Everything between the parentheses will be ignored by the compiler. 
+Multi-line comments start with a \verb"/*" and end with a \verb"*/":
+
+\beforeverb
+\begin{verbatim}
+/* compute the percentage of the hour that has elapsed
+   by multiplying the number of minutes with 100
+   and dividing the result by 60 */
+val percentage = (minute * 100.0) / 60.0
+\end{verbatim}
+\afterverb
+
+Everything between {\tt /*} and {\tt */} or after {\tt //} will be ignored by the compiler. 
 You can also put comments at the end, or even in the middle, of a 
 line of code:
 
 \beforeverb
 \begin{verbatim}
- # let x = 2;; (* I'm a comment! *)
-val x : int = 2
- # let x (* Hi, mom! *) = 3;;
-val x = 3
+val x = 2 // I'm a comment!
+val y /* Hi, mom! */ = 3
 \end{verbatim}
 \afterverb
 
@@ -1365,18 +1201,18 @@ This comment is redundant with the code and useless:
 
 \beforeverb
 \begin{verbatim}
-let v = 5;;     (* assign 5 to v *)
+val v = 5 // assign 5 to v
 \end{verbatim}
 \afterverb
-%
+
 This comment contains useful information that is not in the code:
 
 \beforeverb
 \begin{verbatim}
-let v = 5;;     (* velocity in meters/second. *)
+val v = 5 // velocity in meters/second
 \end{verbatim}
 \afterverb
-%
+
 Good variable names can reduce the need for comments, but
 long names can make complex expressions hard to read, so there is
 a tradeoff.
@@ -1392,31 +1228,26 @@ illegal characters.
 \index{syntax error}
 \index{error!syntax}
 
-For syntax errors, the error messages don't help much.
-The most common message is {\tt SyntaxError: invalid 
-syntax} which is not very informative.
+For syntax errors, the error messages often don't help much and can even lead to confusion. The best thing is to remain calm and look closely at every character you typed.
 
 \index{error message}
-\index{use before def}
-\index{exception}
-\index{runtime error}
-\index{error!runtime}
 
-The runtime error you are most likely to make is a ``unbound value'' that is,
-trying to use a variable before you have assigned
-a value.  This can happen if you spell a variable name wrong:
+Another error you are likely to make is trying to use a variable that has not (yet) been defined. This can happen if you spell a variable name wrong:
 
 \beforeverb
 \begin{verbatim}
- # let principal = 327.68;;
-val principal : float = 327.68
- # let interest = principle *. rate;;
-Error: Unbound value principle
+scala> val velocity = 100
+velocity: Int = 100
+
+scala> velocty
+<console>:8: error: not found: value velocty
+       velocty
+       ^
 \end{verbatim}
 \afterverb
 
-Variables names are case sensitive, so {\tt LaTeX} is not the
-same as {\tt latex}.
+Variables names are case sensitive, so {\tt VELOCITY} is not the
+same as {\tt velocity}.
 
 \index{case-sensitivity, variable names}
 \index{semantic error}
@@ -1428,50 +1259,22 @@ you might be tempted to write
 
 \beforeverb
 \begin{verbatim}
- # 1. /. 2. *. pi;;
+1 / 2 * pi
 \end{verbatim}
 \afterverb
-%
+
 But the division happens first, so you would get $\pi / 2$, which
-is not the same thing!  There is no way for OCaml
+is not the same thing!  There is no way for Scala
 to know what you meant to write, so in this case you don't
 get an error message; you just get the wrong answer.
 
 \index{order of operations}
 
-Another semantic error you might encounter is a scope error.
-For example, assigning a variable for one scope and trying to use it
-in another:
 
-\beforeverb
-\begin{verbatim}
- # let devil = -1;;
-val a : int = -1
- # let god = 1 in god+devil;;
-- : int = 0;;
- # god+devil;;
-Error: unbound value god
-\end{verbatim}
-\afterverb
 
-The last common semantic error I'll mention now is attempting to create
-a variable name with a space in it, which OCaml interprets as a function
-definition:
+%TODO: add var/val mistakes
 
-\beforeverb
-\begin{verbatim}
-# let bad name = 5;;
-val bad : 'a -> int = <fun>
-# bad 2;;
-- : int = 4
-# bad "Please, anything but 4!";;
-- : int = 4
-\end{verbatim}
-\afterverb
 
-What you've done is written a function {\tt bad} that takes one argument of 
-any type and always returns {\tt 4}. This will make more sense when we see 
-functions next chapter.
 
 \section{Glossary}
 
@@ -1487,70 +1290,71 @@ float}), strings (type {\tt str}), characters (type {\tt char}), and
 the unit type (type {\tt unit}, {\tt ()}).
 \index{type}
 
-\item[integer:] A type that represents whole numbers.
+\item[Int:] A type that represents whole numbers.
 \index{integer}
 
-\item[floating-point:] A type that represents numbers with fractional
+\item[Double:] A type that represents numbers with fractional
 parts.
 \index{floating-point}
+\index{Double}
 
-\item[string:] A type that represents sequences of characters.
-\index{string}
+\item[String:] A type that represents sequences of characters.
+\index{String}
 
-\item[character: ] A type that represents a single character.
+\item[Char:] A type that represents a single character.
 \index{character}
+\index{Char}
 
-\item[unit type: ] A null or empty type.
+\item[Unit:] A type with only one value: {\tt ()}.
 \index{unit type}
+\index{Unit}
 
-\item[variable:]  A name that refers to a value. Actually, acts as shorthand for an expression.
+\item[variable:] A name that refers to a value.
 \index{variable}
 
-\item[statement:]  A section of code that represents a command or action.  So
+\item[statement:] A section of code that represents a command or action.  So
 far, the statements we have seen are assignments and print statements.
 \index{statement}
 
-\item[assignment:]  A statement that assigns a value to a variable.
+\item[assignment:] A statement that assigns a value to a variable.
 \index{assignment}
 
-\item[state diagram:]  A graphical representation of a set of variables and the
-expressions they refer to.
+\item[state diagram:] A graphical representation of a set of variables and their values.
 \index{state diagram}
 
-\item[keyword:]  A reserved word that is used by the compiler to parse a
+\item[keyword:] A reserved word that is used by the compiler to parse a
 program; you cannot use keywords like {\tt if}, {\tt  class}, and {\tt while} as
 variable names.
 \index{keyword}
 
-\item[operator:]  A special symbol that represents a simple computation like
+\item[operator:] A special symbol that represents a computation like
 addition, multiplication, or string concatenation.
 \index{operator}
 
-\item[operand:]  One of the values on which an operator operates.
+\item[operand:] One of the values on which an operator operates.
 \index{operand}
 
-\item[expression:]  A combination of variables, operators, and values that
+\item[expression:] A combination of variables, operators, and values that
 represents a single result value.
 \index{expression}
 
-\item[evaluate:]  To simplify an expression by performing the operations
+\item[evaluate:] To simplify an expression by performing the operations
 in order to yield a single value.
 
-\item[rules of precedence:]  The set of rules governing the order in which
+\item[rules of precedence:] The set of rules governing the order in which
 expressions involving multiple operators and operands are evaluated.
 \index{rules of precedence}
 \index{precedence}
 
-\item[concatenate:]  To join two operands end-to-end.
+\item[concatenate:] To join two operands end-to-end.
 \index{concatenation}
 
-\item[comment:]  Information in a program that is meant for other
+\item[comment:] Information in a program that is meant for other
 programmers (or anyone reading the source code) and has no effect on the
 execution of the program.
 \index{comment}
 
 \end{description}
-
 
 \section{Exercises}
 
@@ -1558,9 +1362,9 @@ execution of the program.
 Assume that we execute the following assignment statements:
 
 \begin{verbatim}
-let width = 17;;
-let height = 12.0;;
-let delimiter = '.';;
+val width = 17
+val height = 12.0
+val delimiter = '.'
 \end{verbatim}
 
 For each of the following expressions, write the value of the
@@ -1568,23 +1372,25 @@ expression and the type (of the value of the expression).
 
 \begin{enumerate}
 
-\item {\tt width/2}
+\item {\tt width / 2}
 
-\item {\tt width/.2.0}
+\item {\tt width / 2.0}
 
-\item {\tt height/3}
+\item {\tt height / 3}
 
 \item {\tt 1 + 2 * 5}
 
 \item {\tt delimiter * 5}
 
+\item {\tt "the width is " + width}
+
 \end{enumerate}
 
-Use the OCaml interpreter to check your answers.
+Use the Scala REPL to check your answers.
 \end{ex}
 
 \begin{ex}
-Practice using the OCaml interpreter as a calculator: 
+Practice using the Scala REPL as a calculator: 
 \index{calculator}
 
 \begin{enumerate}
@@ -1600,8 +1406,6 @@ Practice using the OCaml interpreter as a calculator:
 \item If I leave my house at 6:52 am and run 1 mile at an easy pace
   (8:15 per mile), then 3 miles at tempo (7:12 per mile) and 1 mile at
   easy pace again, what time do I get home for breakfast?
-
-\index{running pace}
 
 \end{enumerate}
 \end{ex}
@@ -2398,7 +2202,7 @@ Finally, write a function to append a symbol x number of times.
 
 %You can see my solution at \url{thinkpython.com/ocaml/code/grid.ml}.
 %% Not yet you can't!
-\end{ex}
+%%\end{ex}
 
 %%removed chapter using TurtleWorld. Would love to write suitable replacement.
 
