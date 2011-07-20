@@ -255,7 +255,7 @@ an end.  As we go along, that end will become clearer.
 
 The programming language you will learn is Scala. Scala is
 an example of a {\bf high-level language}; other high-level languages
-you might have heard of are C, C++, Perl, Java and Python.
+you might have heard of are C, C++, Java, PHP and Python.
 
 There are also {\bf low-level languages}, sometimes referred to as ``machine
 languages'' or ``assembly languages.''  Loosely speaking, computers
@@ -308,15 +308,26 @@ Once a program is compiled, you can execute it repeatedly without further transl
 \centerline{\includegraphics[height=0.77in]{figs/compile.eps}}
 \afterfig
 
-One of the nice features of Scala is that Scala is both a compiled and an interpreted 
-programming language. On the one hand, Scala can be compiled into an executable file. 
-This makes it easier to pass along your program to non-Scala users, which for a new, 
-up-and-coming programming language like Scala, is a nice feature. On the other hand, 
+The Scala language is unusual because it is both compiled and interpreted. In-
+stead of translating Scala programs into machine language, the Scala compiler
+generates Java byte code. Byte code is easy (and fast) to interpret, like ma-
+chine language, but it is also portable, like a high-level language. Thus, it is
+possible to compile a Scala program on one machine, transfer the byte code to
+another machine over a network, and then interpret the byte code on the other
+machine. This ability is one of the advantages of Scala (and the Java virtual machine,
+that is used to interpret the bytecode) over many other high-level
+languages.
+
+So on the one hand, Scala can be compiled into byte code. This makes it easier to pass
+ along your
+program to non-Scala users as long as they have Java installed. For a new, 
+up-and-coming programming language like Scala, that is a nice feature. On the other hand, 
 Scala can be treated like an interpreted programming language, meaning that a Scala 
-script or Scala commands can be executed by an interpreter. This is useful for finding 
+script or Scala commands can be executed by an interpreter without first compiling it.
+ This is useful for finding 
 errors in your code and testing commands and snippets of code. There are two ways to use 
 the interpreter: Using the {\bf REPL} and executing {\bf scripts}. REPL stands for
-read-eval-print-look, meaning the REPL reads a command, evaluates (executes) it, and
+read-eval-print-loop, meaning the REPL reads a command, evaluates (executes) it, and
 prints the result:
 
 \index{REPL}
@@ -331,7 +342,7 @@ res0: Int = 2
 %
 ``{\tt scala>}'' is the {\bf prompt} the REPL uses to indicate that it is 
 ready. If you type {\tt 1 + 1}, the 
-REPL replies {\tt res0: Int = 2}.
+REPL replies \verb#res0: Int = 2#.
 
 \index{prompt}
 
@@ -349,16 +360,27 @@ as a script so you can modify and execute it in the future.
 
 \section{The Scala REPL}
 
-Let's take a moment to explain how to use the Scala REPL. The REPL has many commands that tell the interpreter or compiler to do specific tasks, like load code from a file or exit. You can get a list of these commands by typing {\tt \verb ":help" } in the REPL. To get additional information about a command, you can use {\tt \verb ":help COMMAND" }. One particularly useful command is {\tt \verb":quit"}, which does exactly what it sounds like.
+Let's take a moment to explain how to use the Scala REPL. The REPL has many commands that tell the
+interpreter or compiler to do specific tasks, like load code from a file or exit. You can get a list of
+these commands by typing \verb#:help# in the REPL. To get additional information about a command,
+you can use \verb#:help COMMAND#. One particularly useful command is \verb#:quit#, which
+does exactly what it sounds like.
 
 \index{REPL commands}
 \index{REPL}
 
-\subsection{Installation}
+\section{Installation}
 
-%TODO:installation instructions
+Let's install Scala so you can try out some of these commands yourself. Since Scala compiles to Java
+byte code, you must first make sure that you have Java installed. To install Java, go to \url{http://www.oracle.com/technetwork/java/javase/downloads/index.html}
+and download the appropriate JDK (Java Development Toolkit) for your operating system. Then download the
+``lzPack Installer'' from \url{http://www.scala-lang.org/downloads}, which should
+work on all operating systems. Run the installer and follow its instructions.  
 
-Once the installation is complete, you should be able to open the Scala interpreter simply by typing {\tt scala} at the command line. In the REPL you can open a script by using the {\tt :load "{\it filename}"} command:
+Once the installation is complete, you should be able to open the Scala interpreter simply by typing
+\verb#scala# at the command line. (If it doesn't work, try logging out and logging back in.) In the REPL
+ you can open a script by using the
+ \verb#:load FILENAME# command:
 
 \beforeverb
 \begin{verbatim}
@@ -561,7 +583,7 @@ Here are some suggestions for reading programs (and other formal languages).  Fi
 \index{Hello, World}
 
 Traditionally, the first program you write in a new language is called ``Hello World!'' 
-because all it does is display the words, ``Hello World!''  In Scala, one version looks 
+because all it does is display the words, ``Hello World!''.  In Scala, one version looks 
 like this:
 
 \beforeverb
@@ -613,6 +635,73 @@ Now you can clearly see that each {\tt println} also prints a newline. As you mi
 Hello, World!Hello, World!
 \end{verbatim}
 \afterverb
+
+
+\section{Exercises}
+
+\begin{ex}
+
+Computer scientists have the annoying habit of using common
+English words to mean something different from their common
+English meaning.  For example, in English, a statement and
+a comment are pretty much the same thing, but when we are
+talking about a program, they are very different.
+
+The glossary at the end of each chapter is intended to highlight
+words and phrases that have special meanings in computer science.
+When you see familiar words, don't assume that you know what 
+they mean!
+
+\begin{enumerate}
+
+\item In computer jargon, what is the difference between a statement and a comment?
+
+\item What is the difference between a compiler and an interpreter?
+
+\item What does it mean to say that a program is portable?
+
+\item What is an executable?
+
+\end{enumerate}
+
+\end{ex}
+
+\begin{ex}
+Open the Scala REPL and create a ``Hello, World!'' program in interactive mode. Now, create a script called ``hello.scala'' that is a ``Hello, World!'' program and run it.
+\end{ex}
+
+\begin{ex}
+Experiment with several different methods of writing this program. In particular, write at least one method using {\tt print} and one that uses several print statements. Note that you can print newline characters with {\tt \verb"\"n}. For example, {\tt println(\verb"""\verb"\"na\verb"\"nb\verb"\"nc\verb""") } will print a, b and c each on a new line.
+
+\end{ex}
+
+\begin{ex}
+
+It is a good idea to commit as many errors as you can think of,
+so that you see what error messages the compiler produces.
+Sometimes the compiler will tell you exactly what is wrong, and all
+you have to do is fix it.  Sometimes, though, the compiler will produce
+wildly misleading messages.  You will develop a sense for when you can
+trust the compiler and when you have to figure things out yourself.
+
+\begin {enumerate}
+
+\item Remove one or both of the parentheses.
+
+\item Insert a space in place of the first parentheses and leave out the second.
+
+\item Instead of {\tt println}, write {\tt pintln}.
+
+\item Remove {\tt println}.
+
+\item Remove everything inside the parentheses.
+
+\item Add extra parentheses.
+
+\item Give several parameters to {\tt println}, separated by commas.
+
+\end {enumerate}
+\end{ex}
 
 \section{Glossary}
 
@@ -709,73 +798,6 @@ about the program, but that has no effect when the program runs.
 
 \end{description}
 
-\section{Exercises}
-
-\begin{ex}
-
-Computer scientists have the annoying habit of using common
-English words to mean something different from their common
-English meaning.  For example, in English, a statement and
-a comment are pretty much the same thing, but when we are
-talking about a program, they are very different.
-
-The glossary at the end of each chapter is intended to highlight
-words and phrases that have special meanings in computer science.
-When you see familiar words, don't assume that you know what 
-they mean!
-
-\begin{enumerate}
-
-\item In computer jargon, what is the difference between a statement and a comment?
-
-\item What is the difference between a compiler and an interpreter?
-
-\item What does it mean to say that a program is portable?
-
-\item What is an executable?
-
-\end{enumerate}
-
-\end{ex}
-
-\begin{ex}
-Open the Scala REPL and create a ``Hello, World!'' program in interactive mode. Now, create a script called ``hello.scala'' that is a ``Hello, World!'' program and run it.
-\end{ex}
-
-\begin{ex}
-Experiment with several different methods of writing this program. In particular, write at least one method using {\tt print} and one that uses several print statements. Note that you can print newline characters with {\tt \verb"\"n}. For example, {\tt println(\verb"""\verb"\"na\verb"\"nb\verb"\"nc\verb""") } will print a, b and c each on a new line.
-
-\end{ex}
-
-\begin{ex}
-
-It is a good idea to commit as many errors as you can think of,
-so that you see what error messages the compiler produces.
-Sometimes the compiler will tell you exactly what is wrong, and all
-you have to do is fix it.  Sometimes, though, the compiler will produce
-wildly misleading messages.  You will develop a sense for when you can
-trust the compiler and when you have to figure things out yourself.
-
-\begin {enumerate}
-
-\item Remove one or both of the parentheses.
-
-\item Insert a space in place of the first parentheses and leave out the second.
-
-\item Instead of {\tt println}, write {\tt pintln}.
-
-\item Remove {\tt println}.
-
-\item Remove everything inside the parentheses.
-
-\item Add extra parentheses.
-
-\item Give several parameters to {\tt println}, separated by commas.
-
-\end {enumerate}
-\end{ex}
-
-
 
 \chapter{Variables and Expressions}
 
@@ -786,11 +808,13 @@ trust the compiler and when you have to figure things out yourself.
 
 A {\bf value} is one of the basic things a program works with, like a letter or a number.  Some values we have seen so far are {\tt 1}, {\tt 2}, and {\tt "Hello, World!"}.
 
-These values belong to different {\bf types}: {\tt 2} is an integer, and {\tt "Hello, World!"} is a {\bf string}, so-called because it contains a ``string'' of letters. You (and the interpreter) can identify strings because they are enclosed in double quotation marks.
+These values belong to different {\bf types}: {\tt 2} is an integer, and {\tt "Hello, World!"} is a
+ string, so-called because it contains a ``string'' of letters. You (and the Scala interpreter) can
+ identify strings because they are enclosed in double quotation marks.
 
 \index{quotation mark}
 
-You've already used seen \verb"println" to print Strings. You can also use it for integers:
+You've already used \verb"println" to print Strings. You can also use it for integers:
 
 \beforeverb
 \begin{verbatim}
@@ -833,13 +857,14 @@ Double
 
 There's also a separate type called ``Char,'' which is short for ``character.'' 
 A char is like a string, but it's only one character long (hence the name), and it's surrounded 
-by single quotes instead of double quotes. In fact, strings are comprised of lists
-of chars. \footnote{A note on pronunciation: most often, ``char'' is pronounced like in charcoal. 
+by single quotes instead of double quotes. \footnote{A note on pronunciation: most often, ``char''
+ is pronounced like in charcoal. 
 It's less standard, but I personally prefer to pronounce it like it appears in character, since 
-that's where it came from.} Usually, you'll use strings, but if you really only need one character, chars use less memory.
+that's where it came from.} Usually, you'll use strings, but if you really only need one character,
+ chars use less memory.
 
-\index{char type}
-\index{type!char}
+\index{Char type}
+\index{type!Char}
 
 \beforeverb
 \begin{verbatim}
@@ -979,8 +1004,9 @@ But what's wrong with {\tt class}?
 It turns out that {\tt class} is one of Scala's {\bf keywords}.  The
 interpreter uses keywords to recognize the structure of the program,
 and they cannot be used as variable names. The full list of keywords 
-can be found in the scala reference at
-\url{http://www.scala-lang.org/node/198}. I would recommend reading this document much later though, as it is very technical.
+can be found in the Scala reference at
+\url{http://www.scala-lang.org/node/198}. I would not recommend reading this document now, as it is
+ very technical. In fact, you might never need to read it.
 
 \index{keyword}
 
@@ -1006,7 +1032,10 @@ the following examples:
 \end{verbatim}
 \afterverb
 
-For floating-points, the operators are the same, but the {\tt /} operator has a different effect. For integers, {\tt /} yields the integer quotient. so {\tt 5 / 2} is 2 and {\tt 1 / 2 is 0}. For Doubles, {\tt /} probably does what you expect: {\tt 5 / 2} is {\tt 2.5} and {\tt 1 / 2} is {\tt 0.5}.
+For floating-points, the operators are the same, but the {\tt /} operator has a different effect.
+ For integers, {\tt /} yields the integer quotient. so {\tt 5 / 2} is 2 and {\tt 1 / 2 is 0}.
+ For Doubles, {\tt /} probably does what you expect: {\tt 5.0 / 2.0} is {\tt 2.5} and
+ {\tt 1.0 / 2.0} is {\tt 0.5}.
 
 The {\tt +} operator also works with strings, concatenating them.
 \beforeverb
@@ -1025,7 +1054,7 @@ res3: java.lang.String = The value of pi is 3.14
 \end{verbatim}
 \afterverb
 
-Don't forget to put a space somewhere so your words are separated 
+Don't forget to put a space inside the quotes, so your words are separated 
 when you concatenate.
 
 \section{Expressions}
@@ -1060,8 +1089,9 @@ res4: Int = 2
 Expressions can, and often do,\footnote{Any expression with more than just a value or 
 variable technically contains subexpressions.} contain other expressions, called {\bf 
 subexpressions}. When evaluating the value of the expression, the Scala interpreter 
-will evaluate the embedded expression and substitute it in to the larger expression. 
-In Scala, everything that goes on one line and isn't separated by a semicolon must be one expression, although a single expression can span multiple lines.
+will evaluate the embedded expression and substitute it into the larger expression. 
+In Scala, everything that goes on one line and isn't separated by a semicolon must
+ be one expression, although a single expression can span multiple lines.
 
 \begin{ex}
 Type the following statements in the Scala interpreter to see what they do:
@@ -1074,26 +1104,14 @@ x + 1
 \end{verbatim}
 \afterverb
 
-Now put the same statements into a script and run it.  What
+Now put the same statements into a script and run it. What
 is the output? How can you modify it to print the value of {\tt x + 1}?
 \end{ex}
 
-\section{Variables as Expressions and References}
+\section{Variables and Values}
 
-\index{Variables!References}
-\index{References}
-
-Now, this is where I admit that I lied to you a little bit.
-
-Remember how I said that the expression {\tt val x = 3} assigns
-the values of `3' to the variable `x'? Well, that's not
-entirely true. In fact, it's not true at all.
-
-What really happens when I say {\tt val x = 3} is that the {\it expression}
-`3' is represented by `x'. `x' becomes kind of a shorthand way of writing `3'.
-
-One of the side effects of this is that you can't change the value of a variable.
-So, really, in some sense, they shouldn't be called variables at all.
+\index{Variables}
+\index{Values}
 
 
 
@@ -1143,11 +1161,16 @@ if the strings look like numbers, so the following are illegal:
 
 \beforeverb
 \begin{verbatim}
-"2"-"1"    "eggs"/"easy"    "third"*"a charm"
+"2" - "1"
+"eggs" / "easy"
+"third" * "the charm"
 \end{verbatim}
 \afterverb
 
-As we saw before, you can use the + operator to concatenate two strings. Technically, that is not the same plus operator though. Think of it as two operators that happen to be written the same. Giving ``one'' operator multiple meanings is called {\bf operator overloading}.
+As we saw before, you can use the + operator to concatenate two strings. Technically, that is not
+ the same plus operator though. Think of it as two operators that happen to be written the same, just
+ like the word ``bank'' can mean different things in different contexts.
+ Giving one operator multiple meanings is called {\bf operator overloading}.
 
 \index{operator!overloading}
 
@@ -1259,21 +1282,85 @@ you might be tempted to write
 
 \beforeverb
 \begin{verbatim}
-1 / 2 * pi
+1.0 / 2.0 * pi
 \end{verbatim}
 \afterverb
 
-But the division happens first, so you would get $\pi / 2$, which
+But the division happens first, so you would get $\frac{\pi}{2}$, which
 is not the same thing!  There is no way for Scala
 to know what you meant to write, so in this case you don't
-get an error message; you just get the wrong answer.
+get an error message; you just get the wrong answer. To get the right result, you need to use parenthesis
+around \verb#2 * pi#.
+
+\beforeverb
+\begin{verbatim}
+1.0 / (2.0 * pi)
+\end{verbatim}
+\afterverb
 
 \index{order of operations}
 
 
 
+%TODO: add int versus double division mistakes
 %TODO: add var/val mistakes
 
+
+
+
+\section{Exercises}
+
+\begin{ex}
+Assume that we execute the following assignment statements:
+
+\begin{verbatim}
+val width = 17
+val height = 12.0
+val delimiter = '.'
+\end{verbatim}
+
+For each of the following expressions, write the value of the
+expression and the type (of the value of the expression).
+
+\begin{enumerate}
+
+\item {\tt width / 2}
+
+\item {\tt width / 2.0}
+
+\item {\tt height / 3}
+
+\item {\tt 1 + 2 * 5}
+
+\item {\tt delimiter * 5}
+
+\item {\tt "the width is " + width}
+
+\end{enumerate}
+
+Use the Scala REPL to check your answers.
+\end{ex}
+
+\begin{ex}
+Practice using the Scala REPL as a calculator: 
+\index{calculator}
+
+\begin{enumerate}
+
+\item The volume of a sphere with radius $r$ is $\frac{4}{3} \pi r^3$.
+  What is the volume of a sphere with radius 5?  Hint: 392.6 is wrong!
+
+\item Suppose the cover price of a book is \$24.95, but bookstores get a
+  40\% discount.  Shipping costs \$3 for the first copy and 75 cents
+  for each additional copy.  What is the total wholesale cost for
+  60 copies?
+
+\item If I leave my house at 6:52 am and run 1 mile at an easy pace
+  (8:15 per mile), then 3 miles at tempo (7:12 per mile) and 1 mile at
+  easy pace again, what time do I get home for breakfast?
+
+\end{enumerate}
+\end{ex}
 
 
 \section{Glossary}
@@ -1356,59 +1443,6 @@ execution of the program.
 
 \end{description}
 
-\section{Exercises}
-
-\begin{ex}
-Assume that we execute the following assignment statements:
-
-\begin{verbatim}
-val width = 17
-val height = 12.0
-val delimiter = '.'
-\end{verbatim}
-
-For each of the following expressions, write the value of the
-expression and the type (of the value of the expression).
-
-\begin{enumerate}
-
-\item {\tt width / 2}
-
-\item {\tt width / 2.0}
-
-\item {\tt height / 3}
-
-\item {\tt 1 + 2 * 5}
-
-\item {\tt delimiter * 5}
-
-\item {\tt "the width is " + width}
-
-\end{enumerate}
-
-Use the Scala REPL to check your answers.
-\end{ex}
-
-\begin{ex}
-Practice using the Scala REPL as a calculator: 
-\index{calculator}
-
-\begin{enumerate}
-
-\item The volume of a sphere with radius $r$ is $\frac{4}{3} \pi r^3$.
-  What is the volume of a sphere with radius 5?  Hint: 392.6 is wrong!
-
-\item Suppose the cover price of a book is \$24.95, but bookstores get a
-  40\% discount.  Shipping costs \$3 for the first copy and 75 cents
-  for each additional copy.  What is the total wholesale cost for
-  60 copies?
-
-\item If I leave my house at 6:52 am and run 1 mile at an easy pace
-  (8:15 per mile), then 3 miles at tempo (7:12 per mile) and 1 mile at
-  easy pace again, what time do I get home for breakfast?
-
-\end{enumerate}
-\end{ex}
 
 \chapter{Functions}
 \label{funcchap}
