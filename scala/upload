@@ -1,0 +1,1 @@
+scp book.pdf  ksteb001@login1.cs.hs-rm.de:~/public_html/think-scala.pdf
