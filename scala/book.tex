@@ -172,11 +172,8 @@ The original form of this book is \LaTeX\ source code.  Compiling this
 representation of a textbook, which can be converted to other formats
 and printed.
 
-%TODO: insert github link
-%The \LaTeX\ source for this book is available from
-%\url{http://www.thinkpython.com}
-
-%Cover image is courtesy of Anumpama Kinagi, all rights reserved.
+The \LaTeX\ source for this book is available from
+\url{https://github.com/KimStebel/Think-Scala}
 
 \vspace{0.2in}
 
@@ -193,7 +190,7 @@ and printed.
 
 {\Large \thetitle}
 
-{\large Kim Stebel}
+{\large Kim Stebel\\}
 {\large Nicholas Monje\\}
 {\large Allen Downey\\}
 
@@ -205,12 +202,12 @@ Version \theversion
 
 \chapter{Preface}
 
-%TODO: write a preface
+%TODO: NORMAL write a preface
 
 \section*{Contributor List}
 {\large Richard Schubert - inspiration}
 
-%TODO: insert contributers
+%TODO: NORMAL insert contributers
 
 % TABLE OF CONTENTS
 \begin{latexonly}
@@ -321,14 +318,29 @@ languages.
 So on the one hand, Scala can be compiled into byte code. This makes it easier to pass
  along your
 program to non-Scala users as long as they have Java installed. For a new, 
-up-and-coming programming language like Scala, that is a nice feature. On the other hand, 
+up-and-coming programming language like Scala, that is a nice feature. It also allows
+Scala programmers to reuse source code that has been written in Java. On the other hand, 
 Scala can be treated like an interpreted programming language, meaning that a Scala 
 script or Scala commands can be executed by an interpreter without first compiling it.
  This is useful for finding 
 errors in your code and testing commands and snippets of code. There are two ways to use 
 the interpreter: Using the {\bf REPL} and executing {\bf scripts}. REPL stands for
 read-eval-print-loop, meaning the REPL reads a command, evaluates (executes) it, and
-prints the result:
+prints the result. Once you start the REPL, it will look like this:
+
+\beforeverb
+\begin{verbatim}
+Welcome to Scala version 2.9.0.1 (OpenJDK Server VM, Java 1.6.0_22).
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala>
+\end{verbatim}
+\afterverb
+
+Scala greets you and tells you its version as well as the version of the Java virtual machine on
+which it is running. ``{\tt scala>}'' is the {\bf prompt} the REPL uses to indicate that it is
+ready. Let's type in a very simple arithmetical expression:
 
 \index{REPL}
 \index{script}
@@ -340,13 +352,14 @@ res0: Int = 2
 \end{verbatim}
 \afterverb
 %
-``{\tt scala>}'' is the {\bf prompt} the REPL uses to indicate that it is 
-ready. If you type {\tt 1 + 1}, the 
-REPL replies \verb#res0: Int = 2#.
+ If you type {\tt 1 + 1}, the
+REPL replies \verb#res0: Int = 2#. Here, \verb#res0# is the name of the result. You can use this
+result later in other expressions. \verb#Int# is the type of the result, in this case an integer.
+Anf finally \verb#2# is the result of adding 1 and 1.
 
 \index{prompt}
 
-Alternatively, you can store code in a file and use the interpreter to execute the contents 
+Alternatively, you can store code in a text file and use the interpreter to execute the contents 
 of the file, which is called a {\bf script}.  By convention, Scala scripts have names that 
 end with {\tt .scala}.
 
@@ -356,7 +369,9 @@ end with {\tt .scala}.
 
 Working in the REPL is convenient for testing small pieces of code, because you can type 
 and execute them immediately.  But for anything more than a few lines, you should save your code 
-as a script so you can modify and execute it in the future.
+as a script so you can modify and execute it in the future.  To do that, you can use a simple text
+editor.  However, do not use a word processor like Word or Writer, since they will not store the
+text in the right format.
 
 \section{The Scala REPL}
 
@@ -439,7 +454,12 @@ Scala can only execute a program if the syntax is correct; otherwise, it display
 \index{parentheses!matching}
 \index{syntax}
 
-In English, readers can tolerate most syntax errors, which is why we can read the poetry of E. E. Cummings without spewing error messages. Scala, and programming languages in general, is not so forgiving.  If there is a single syntax error anywhere in your program, Scala will display an error message and quit, and you will not be able to run your program. During the first few weeks of your programming career, you will probably spend a lot of time tracking down syntax errors.  As you gain experience, you will make fewer errors and find them faster.
+In English, readers can tolerate most syntax errors, which is why we can read the poetry of E. E.
+Cummings without spewing error messages. Scala, and programming languages in general, is not so
+forgiving.  If there is a single syntax error anywhere in your program, Scala will display an error
+message and quit, and you will not be able to run your program. During the first few weeks of your
+programming career, you will probably spend a lot of time tracking down syntax errors.  As you gain
+experience, you will make fewer errors and find them faster.
 
 \subsection{Runtime errors}
 \label{runtime}
@@ -959,6 +979,44 @@ res1: Double = 3.14
 \end{verbatim}
 \afterverb
 
+\section{Variables and Values}
+
+\index{Variables}
+\index{Values}
+
+There are two different kinds of variables in Scala. So far, you have only seen variables declared with the \verb#val# keyword,
+but you can also use \verb#var# to create variables. The difference is that variables declared with \verb#val# can only be assigned a value once
+when they are created. 
+
+\beforeverb
+\begin{verbatim}
+scala> val name = "Anna"
+name: java.lang.String = Anna
+
+scala> name = "Sarah"
+<console>:8: error: reassignment to val
+       name = "Sarah"
+            ^
+\end{verbatim}
+\afterverb
+
+The error message is very clear. It tells you you can't assign a value to a \verb#val# twice. 
+Now let's try this with a \verb#var#.
+
+\beforeverb
+\begin{verbatim}
+scala> var name = "Anna"
+name: java.lang.String = Anna
+
+scala> name = "Sarah"
+name: java.lang.String = Sarah
+\end{verbatim}
+\afterverb
+
+This time Scala lets us change Anna's name to Sarah. However, if a variable should not or need not be changed, it is good
+programming practice to declare it as a \verb#val#. This makes your programs easier to read for other programmers and for future
+version of yourself.
+
 \section{Variable names and keywords}
 \index{keyword}
 
@@ -1108,17 +1166,6 @@ Now put the same statements into a script and run it. What
 is the output? How can you modify it to print the value of {\tt x + 1}?
 \end{ex}
 
-\section{Variables and Values}
-
-\index{Variables}
-\index{Values}
-
-
-
-%TODO: explain difference between vals and vars
-
-
-
 \section{Order of operations}
 \index{order of operations}
 \index{rules of precedence}
@@ -1139,10 +1186,12 @@ expression easier to read, as in {\tt (minute * 100) / 60}, even
 if it doesn't change the result.
 
 \item Multiplication has higher precedence than division,
-division has higher precedence than addition, which in turn has higher precedence than subtraction. So {\tt 2 * 3 - 1} is 5, not 4, and {\tt 6 + 4 / 2} is 8, not 5.
+division has higher precedence than addition, which in turn has higher precedence than subtraction. So {\tt 2 * 3 - 1}
+ is 5, not 4, and {\tt 6 + 4 / 2} is 8, not 5.
 
 \item Operators with the same precedence are evaluated from left to 
-right.  So in the expression {\tt 4 / 2 / 2}, the subexpression {\tt 4 / 2} is evaluated first and the result is divided by {\tt 2}, yielding 1.
+right.  So in the expression {\tt 4 / 2 / 2}, the subexpression {\tt 4 / 2} is evaluated first and the result is
+ divided by {\tt 2}, yielding 1.
 
 \end{itemize}
 
@@ -1302,9 +1351,8 @@ around \verb#2 * pi#.
 
 
 
-%TODO: add int versus double division mistakes
-%TODO: add var/val mistakes
-
+%TODO: LOW add int versus double division mistakes
+%TODO: LOW add var/val mistakes
 
 
 
@@ -1454,49 +1502,46 @@ execution of the program.
 In the context of functional programming, a {\bf function} is a named 
 expression that performs a computation.  When you define a function,
 you specify the name and the expression.  Later, you can ``call'' the 
-function by name.  We have already seen one example of a {\bf function 
-call}:
+function by name. Scala comes with a large collection of functions that have already been defined
+for you. It provides most of the familiar mathematical functions, including
+the trigonometric functions and their inverses, log (natural logarithm) and base-10 log. To be able
+to use these functions, we first have to import them. This tells Scala where to look
+for functions that we have not defined ourselves.
 
 \beforeverb
 \begin{verbatim}
-# float_of_int 32;;
-- : float = 32.
+scala> import scala.math._
+import scala.math._
+
+scala> sqrt(2)
+res0: Double = 1.4142135623730951
+
+scala> log10(1000)
+res1: Double = 3.0
+
+scala> pow(10,3)
+res2: Double = 1000.0
 \end{verbatim}
 \afterverb
-%
-The name of the function is {\tt \verb"float_of_int"}.  The expression that follows
-is called the {\bf argument} of the function.  The result, for this
-function, is a floating-point version of the integer argument. There is, of course, the
-inverse function,\verb"int_of_float". There are other type conversion functions, too, such as
-\verb"string_of_int" and \verb"string_of_float" and their respective inverses.
 
-It is common to say that a function ``takes'' an argument and ``returns''
-a result.  The result is called the {\bf return value}.
+%TODO: NORMAL add reference: \footnote{You will learn more about imports and
+%packages in chapter ....}
+
+In the first line, we import all functions and values from the \verb#scala.math# package. The
+underscore indicates that we want to import all functions. You can
+think of a package as a collection of functions, values and classes\footnote{You don't need to
+worry about classes now. You will get to know them in a later chapter.}. The
+second line uses the \verb#sqrt# function to compute the square root of 2. Just like in math,
+arguments to functions are put into parentheses. In the third line, we
+compute the base-10 logarithm of 1000. And finally we check the previous result by computing the
+third power of 10. If we need to pass more than one argument to a function, we separate them with
+commas. It is common to say that a function ``takes'' an argument and
+``returns'' a result. The result is called the {\bf return value}.
 
 \index{argument}
 \index{return value}
-
-\section{Math functions}
 \index{math function}
 \index{function, math}
-
-OCaml provides most of the familiar mathematical functions, including
-the trig functions and their inverses, log (natural log) and base-10 log.
-Naturally, they all take float arguments, not integers.
-
-\beforeverb
-\begin{verbatim}
-# let ratio = signal_power /. noise_power;
-# decibels = 10. *. log10 ratio;;
-
-# radians = 0.7;;
-# height = sin radians;;
-\end{verbatim}
-\afterverb
-%
-The first example computes the base-10 logarithm of the
-signal-to-noise ratio.
-
 \index{log function}
 \index{function!log}
 \index{sine function}
@@ -1504,37 +1549,7 @@ signal-to-noise ratio.
 \index{trigonometric function}
 \index{function, trigonometric}
 
-The second example finds the sine of {\tt radians}.  The name of the
-variable is a hint that {\tt sin} and the other trigonometric
-functions ({\tt cos}, {\tt tan}, etc.)  take arguments in radians. To
-convert from degrees to radians, divide by 360 and multiply by $2
-\pi$:
-
-\beforeverb
-\begin{verbatim}
-# let degrees = 45.;;
-# let pi = 4. *. atan 1.0;;
-# let radians = degrees /. 360. *. 2. *. pi;;
-# sin radians;;
-0.707106781187
-\end{verbatim}
-\afterverb
-%
-
-If you know
-your trigonometry, you can check the previous result by comparing it to
-the square root of two divided by two:
-
-\index{sqrt function}
-\index{function!sqrt}
-
-\beforeverb
-\begin{verbatim}
-# (sqrt 2.) /. 2.0
-0.707106781187
-\end{verbatim}
-\afterverb
-
+%TODO: HIGH cont...
 \section{Composition}
 \index{composition}
 
@@ -1549,39 +1564,44 @@ including arithmetic operators:
 
 \beforeverb
 \begin{verbatim}
-let x = sin (degrees /. 360.0 *. 2 *. pi);;
+scala> sin(30.0 / 360.0 * 2 * Pi)
+res6: Double = 0.49999999999999994
 \end{verbatim}
 \afterverb
-%
-And even function calls:t
+
+And even function calls:
 
 \beforeverb
 \begin{verbatim}
-let x = exp (log (x+.1.));;
+scala> sin(degToRad(30))
+res3: Double = 0.49999999999999994
 \end{verbatim}
 \afterverb
-%
-Note in this example that we put parentheses around the inner function and the inner 
-expression, to tell OCaml how to read this statement. If we just told it \verb"exp log x+1;;" it would try to pass both {\tt log} and {\tt x} as two separate arguments 
-to {\tt exp} and then add one.
+
+Here we pass the result of calling the \verb#degToRad# function with 30 to the \verb#sin# function.
+Note that the result is not precise. Just like with a calculator, rounding mistakes are inevitable
+when using floating point numbers.
 
 Almost anywhere you can put a value, you can put an arbitrary
 expression, with one exception: the left side of an assignment
 statement has to be a variable name, or function definition, which
 you'll see in the next section.  Any other expression on the left
-side is a syntax error.
+side results in an error.\footnote{This isn't completely true. The left side of an assignment
+statement can also be a ``pattern''. You will find out more in the chapter on pattern
+matching.}
+%TODO: NORMAL update reference to chapter on pattern matching
 
 \beforeverb
 \begin{verbatim}
- # let minutes = hours *. 60.0;;                 (* right *)
- # let hours *. 60 = minutes;;;                  (* wrong! *)
-Error: Syntax error
+scala> val minutes = hours * 60
+minutes: Int = 180
+
+scala> val hours * 60 = minutes
+<console>:12: error: not found: value *
+       val hours * 60 = minutes
+                 ^
 \end{verbatim}
 \afterverb
-%
-\index{SyntaxError}
-\index{exception!SyntaxError}
-
 
 \section{Adding new functions}
 
